@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NIFASIA - Edukasi &amp; Pendampingan Masa Nifas Terpercaya</title>
+<!-- Google Fonts: Fredoka & Poppins -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#F5A02A',
+              orangeHover: '#DE8B1B',
+              dark: '#343F4B',
+              lightGray: '#F8FAFC',
+              pastelPink: '#FFE5EC',
+              pastelYellow: '#FFF3CD',
+              pastelMint: '#E2F7EC',
+              pastelBlue: '#E0F2FE',
+            }
+          },
+          fontFamily: {
+            heading: ['Fredoka', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+          },
+          borderRadius: {
+            '4xl': '2rem',
+            '5xl': '2.5rem',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Stylesheet -->
+<style data-purpose="custom-typography-and-effects">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #EDF1F7;
+      color: #343F4B;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
+    /* Dashed frame effect like reference layout */
+    .doodle-card-dashed-pink {
+      border: 2px dashed #F472B6;
+      border-radius: 1.5rem;
+    }
+    .doodle-card-dashed-blue {
+      border: 2px dashed #60A5FA;
+      border-radius: 9999px;
+    }
+    .doodle-card-dashed-orange {
+      border: 2px dashed #F5A02A;
+      border-radius: 1.5rem;
+    }
+    .doodle-card-dashed-gray {
+      border: 2px dashed #94A3B8;
+      border-radius: 1.2rem;
+    }
+    /* Cloud wave cutout shape */
+    .cloud-mask {
+      clip-path: ellipse(115% 100% at 50% 0%);
+    }
+    /* Flip Card Styles */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    /* Subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+
+    /* ===== FULL SCREEN LAYOUT ===== */
+    :root { --gutter: clamp(1.25rem, 4.5vw, 6rem); }
+    #page { overflow-x: clip; }
+    #site-header, main > section, footer {
+      padding-left: var(--gutter) !important;
+      padding-right: var(--gutter) !important;
+    }
+    #hero { min-height: calc(100vh - 76px); display: flex; align-items: center; }
+    #hero > .grid { width: 100%; }
+
+    /* ===== ANIMASI ===== */
+    @keyframes riseIn  { from { opacity: 0; transform: translateY(32px); } }
+    @keyframes slideL  { from { opacity: 0; transform: translateX(-48px); } }
+    @keyframes slideR  { from { opacity: 0; transform: translateX(48px); } }
+    @keyframes zoomIn  { from { opacity: 0; transform: scale(.88); } }
+    @keyframes popIn   { from { opacity: 0; transform: scale(.8) rotate(-4deg); } }
+    @keyframes floatY  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    @keyframes spinSlow{ to { transform: rotate(360deg); } }
+    @keyframes ringOrange { 0% { box-shadow: 0 0 0 0 rgba(245,160,42,.55); } 100% { box-shadow: 0 0 0 20px rgba(245,160,42,0); } }
+    @keyframes ringRed    { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,.5); }  100% { box-shadow: 0 0 0 18px rgba(239,68,68,0); } }
+
+    /* urutan muncul hero saat halaman dibuka */
+    .hero-in { animation: riseIn .9s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0s); }
+    @keyframes scaleIn { from { transform: scale(.9); } }
+    .hero-photo.float-slow { animation: scaleIn .9s cubic-bezier(.2,.8,.2,1) backwards, floatY 6s ease-in-out 1s infinite; }
+    .float-slow  { animation: floatY 5s ease-in-out infinite; }
+    .float-slower{ animation: floatY 7s ease-in-out -2s infinite; }
+    .spin-slow   { animation: spinSlow 30s linear infinite; }
+    #hero a.bg-brand-orange { animation: ringOrange 2.4s ease-out 1.6s infinite; }
+    #tanda-bahaya a[href^="tel"] { animation: ringRed 2s ease-out infinite; }
+
+    /* muncul saat di-scroll */
+    .reveal { opacity: 0; }
+    .reveal.in-view { opacity: 1; animation: riseIn .85s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0s); }
+    .reveal[data-reveal="left"].in-view  { animation-name: slideL; }
+    .reveal[data-reveal="right"].in-view { animation-name: slideR; }
+    .reveal[data-reveal="zoom"].in-view  { animation-name: zoomIn; }
+
+    /* kartu terangkat saat disentuh */
+    main section [class*="shadow-sm"]:not(.flip-card):not(.reveal-skip) {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    main section [class*="shadow-sm"]:not(.flip-card):hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 32px -12px rgba(52,63,75,.25);
+    }
+    a.rounded-full:active, button:active { transform: scale(.96); }
+
+    /* bar progres scroll + bayangan navbar */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; z-index: 100;
+      background: linear-gradient(90deg, #F5A02A, #F472B6, #60A5FA); border-radius: 0 4px 4px 0; }
+    #site-header.scrolled { box-shadow: 0 8px 24px -12px rgba(52,63,75,.25); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1 !important; }
+    }
+
+    /* ===== MATERI: KARTU + POPUP BACA ===== */
+    .materi-head { margin-top: 3rem; text-align: center; }
+    .materi-kicker { display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:#D98A0B; background:#FFF1D6; padding:.35rem .9rem; border-radius:999px; }
+    .materi-head h3 { font-family:'Fredoka','Poppins',sans-serif; font-weight:700; font-size:clamp(1.3rem,2.4vw,1.8rem); color:#343F4B; margin:.6rem 0 0; }
+    .materi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.25rem; margin-top:1.5rem; }
+    .materi-card { display:flex; flex-direction:column; gap:.7rem; background:#fff; border:1px solid #eef1f5; border-radius:1.5rem; padding:1.4rem;
+      box-shadow:0 2px 10px -4px rgba(52,63,75,.12); cursor:pointer; text-align:left; }
+    .materi-card:hover { box-shadow:0 18px 32px -14px rgba(52,63,75,.3); transform:translateY(-6px); }
+    .materi-card, .materi-card * { transition: transform .3s ease, box-shadow .3s ease, background .2s, gap .2s; }
+    .materi-ic { width:3.2rem; height:3.2rem; border-radius:1rem; display:grid; place-items:center; font-size:1.6rem; }
+    .materi-card h4 { font-family:'Fredoka','Poppins',sans-serif; font-weight:600; font-size:1.08rem; line-height:1.3; color:#343F4B; margin:0; }
+    .materi-card p { font-size:.85rem; line-height:1.55; color:#64748b; margin:0; flex:1; }
+    .materi-meta { font-size:.72rem; color:#94a3b8; }
+    .materi-btn { display:inline-flex; align-items:center; gap:.4rem; align-self:flex-start; border:0; cursor:pointer; font:600 .85rem 'Poppins',sans-serif;
+      color:#fff; background:#F5A02A; padding:.6rem 1.1rem; border-radius:999px; }
+    .materi-card:hover .materi-btn { gap:.7rem; background:#E8921A; }
+
+    .mm { position:fixed; inset:0; z-index:200; display:flex; align-items:flex-end; justify-content:center; }
+    .mm[hidden] { display:none; }
+    .mm-backdrop { position:absolute; inset:0; background:rgba(30,41,59,.55); backdrop-filter:blur(3px); animation:mmFade .25s ease; }
+    .mm-panel { position:relative; width:100%; max-width:860px; height:94vh; background:#fff; border-radius:2rem 2rem 0 0; display:flex; flex-direction:column;
+      overflow:hidden; box-shadow:0 -20px 60px -20px rgba(0,0,0,.35); animation:mmUp .4s cubic-bezier(.2,.8,.2,1); outline:none; }
+    @media (min-width:900px){ .mm { align-items:center; } .mm-panel { height:90vh; border-radius:2rem; } }
+    @keyframes mmFade { from { opacity:0; } }
+    @keyframes mmUp { from { opacity:0; transform:translateY(40px) scale(.97); } }
+    .mm-bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.9rem 1.25rem; border-bottom:1px solid #eef1f5; background:#fff; z-index:2; }
+    .mm-back { display:inline-flex; align-items:center; gap:.45rem; border:0; cursor:pointer; font:600 .9rem 'Poppins',sans-serif; color:#343F4B; background:#f1f5f9; padding:.6rem 1.1rem; border-radius:999px; }
+    .mm-back:hover { background:#F5A02A; color:#fff; }
+    .mm-x { border:0; cursor:pointer; width:2.4rem; height:2.4rem; border-radius:50%; background:#f1f5f9; color:#475569; font-size:1rem; }
+    .mm-x:hover { background:#fee2e2; color:#dc2626; }
+    .mm-count { font-size:.78rem; color:#94a3b8; }
+    .mm-scroll { overflow-y:auto; flex:1; scroll-behavior:smooth; }
+    .mm-head { padding:2rem 1.5rem 1.5rem; background:var(--tone-bg,#FFF1D6); text-align:center; }
+    @media (min-width:700px){ .mm-head, .mm-body, .mm-foot { padding-left:3rem; padding-right:3rem; } }
+    .mm-ic { width:4rem; height:4rem; margin:0 auto .8rem; border-radius:1.2rem; background:#fff; display:grid; place-items:center; font-size:2rem; box-shadow:0 6px 16px -8px rgba(0,0,0,.2); }
+    .mm-kicker { font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tone,#D98A0B); }
+    .mm-head h2 { font-family:'Fredoka','Poppins',sans-serif; font-weight:700; font-size:clamp(1.5rem,3.4vw,2.2rem); line-height:1.2; color:#343F4B; margin:.4rem 0 .4rem; }
+    .mm-sub { color:#64748b; font-size:.95rem; margin:0; }
+    .mm-time { display:inline-block; margin-top:.8rem; font-size:.75rem; color:#64748b; background:#fff; padding:.3rem .8rem; border-radius:999px; }
+    .mm-body { padding:1.5rem 1.5rem 1rem; color:#475569; font-size:.98rem; line-height:1.75; }
+    .mm-body h3 { display:flex; align-items:center; gap:.7rem; font-family:'Fredoka','Poppins',sans-serif; font-weight:600; font-size:1.3rem; color:#343F4B; margin:2rem 0 .6rem; }
+    .mm-num { flex:none; width:2rem; height:2rem; border-radius:50%; background:var(--tone,#F5A02A); color:#fff; display:grid; place-items:center; font:600 .9rem 'Poppins',sans-serif; }
+    .mm-body h4 { font-weight:600; font-size:1.02rem; color:var(--tone,#D98A0B); margin:1.3rem 0 .3rem; }
+    .mm-body p { margin:.5rem 0; }
+    .mm-label { font-weight:600; color:#343F4B; margin-top:.9rem !important; }
+    .mm-body ul, .mm-body ol { margin:.4rem 0 .6rem; padding:0; list-style:none; counter-reset:li; }
+    .mm-body li { position:relative; padding:.45rem .9rem .45rem 2.4rem; margin:.35rem 0; background:#f8fafc; border-radius:.9rem; }
+    .mm-body ul li::before { content:''; position:absolute; left:1rem; top:1.05rem; width:.55rem; height:.55rem; border-radius:50%; background:var(--tone,#F5A02A); }
+    .mm-body ol li { counter-increment:li; }
+    .mm-body ol li::before { content:counter(li); position:absolute; left:.6rem; top:.55rem; width:1.4rem; height:1.4rem; border-radius:50%; background:var(--tone,#F5A02A); color:#fff; font:600 .75rem/1.4rem 'Poppins',sans-serif; text-align:center; }
+    .mm-note { margin:1rem 0; padding:1rem 1.2rem; border-radius:1rem; background:#FFF8E6; border-left:4px solid #F5A02A; color:#5b4a1f; }
+    .mm-foot { padding:1rem 1.5rem 2.5rem; display:grid; gap:.8rem; }
+    .mm-pn { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+    .mm-pn button { border:1px solid #e2e8f0; background:#fff; border-radius:1rem; padding:.8rem 1rem; text-align:left; cursor:pointer; font:500 .82rem 'Poppins',sans-serif; color:#475569; }
+    .mm-pn button:hover { border-color:#F5A02A; background:#FFF8E6; }
+    .mm-pn button small { display:block; color:#94a3b8; font-size:.7rem; }
+    .mm-pn button:last-child { text-align:right; }
+    .mm-pn button:disabled { visibility:hidden; }
+    .mm-back-lg { justify-self:center; font:600 .95rem 'Poppins',sans-serif; border:0; cursor:pointer; color:#fff; background:#F5A02A; padding:.8rem 1.8rem; border-radius:999px; }
+    .mm-back-lg:hover { background:#E8921A; }
+    html.mm-lock { overflow:hidden; }
+  </style>
+<!-- END: Custom Stylesheet -->
+</head>
+<body class="antialiased min-h-screen p-0">
+<!-- BEGIN: Central Layout Wrapper (Matching Reference Paper-Canvas Aesthetic) -->
+<div id="page" class="w-full max-w-none bg-white relative">
+<!-- Decorative Floating Doodles (Absolute Positioned SVGs) -->
+<!-- Sun doodle top right -->
+<div class="absolute top-20 right-8 md:right-16 pointer-events-none opacity-40 select-none hidden sm:block spin-slow">
+<svg fill="none" height="46" stroke="#F5A02A" stroke-linecap="round" stroke-width="2" viewbox="0 0 46 46" width="46">
+<circle cx="23" cy="23" r="11" stroke-dasharray="2 3"></circle>
+<line x1="23" x2="23" y1="4" y2="8"></line>
+<line x1="23" x2="23" y1="38" y2="42"></line>
+<line x1="4" x2="8" y1="23" y2="23"></line>
+<line x1="38" x2="42" y1="23" y2="23"></line>
+<line x1="9.5" x2="12.5" y1="9.5" y2="12.5"></line>
+<line x1="33.5" x2="36.5" y1="33.5" y2="36.5"></line>
+<line x1="9.5" x2="12.5" y1="36.5" y2="33.5"></line>
+<line x1="33.5" x2="36.5" y1="12.5" y2="9.5"></line>
+</svg>
+</div>
+<!-- BEGIN: MainHeader & Navigation Bar -->
+<header id="site-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4 transition-all">
+<nav aria-label="Navigasi Utama" class="flex items-center justify-between">
+<!-- Brand Logo -->
+<a aria-label="Kembali ke Beranda NIFASIA" class="flex items-center gap-2 group" href="#hero">
+<div class="w-10 h-10 rounded-2xl bg-amber-50 border-2 border-brand-orange flex items-center justify-center text-brand-orange font-heading font-bold text-xl group-hover:scale-105 transition-transform">
+            N
+          </div>
+<div>
+<span class="text-2xl font-bold font-heading text-slate-800 tracking-tight">NIFASIA</span>
+<span class="hidden sm:inline-block text-[10px] text-brand-orange uppercase tracking-wider font-semibold ml-1.5 px-2 py-0.5 bg-amber-50 rounded-full">Sahabat Ibu</span>
+</div>
+</a>
+<!-- Desktop Navigation Links -->
+<div class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-slate-600">
+<a class="hover:text-brand-orange transition-colors" href="#nifas-academy">Nifas Academy</a>
+<a class="hover:text-brand-orange transition-colors" href="#video-hub">Video Hub</a>
+<a class="hover:text-brand-orange transition-colors" href="#asi-corner">ASI Corner</a>
+<a class="hover:text-brand-orange transition-colors" href="#oksitosin">Pijat Oksitosin</a>
+<a class="hover:text-red-500 font-semibold transition-colors" href="#tanda-bahaya">Tanda Bahaya</a>
+<a class="hover:text-brand-orange transition-colors" href="#mental-health">Kesehatan Mental</a>
+<a class="hover:text-brand-orange transition-colors" href="#faq">FAQ</a>
+</div>
+<!-- Navigation Call to Action Button -->
+<div class="flex items-center gap-3">
+<a class="px-5 py-2.5 bg-brand-orange hover:bg-brand-orangeHover text-white text-xs font-semibold rounded-full shadow-sm hover:shadow transition-all" href="#nifas-academy">
+            Mulai Belajar
+          </a>
+<!-- Mobile Menu Toggle Button -->
+<button aria-label="Buka Menu Navigasi" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" id="mobile-menu-toggle" type="button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</nav>
+<!-- Mobile Dropdown Navigation -->
+<div class="hidden lg:hidden pt-4 pb-2 border-t border-slate-100 mt-3 flex flex-col gap-2.5 text-sm font-medium text-slate-700" id="mobile-nav">
+<a class="py-1 px-2 rounded hover:bg-slate-50" href="#nifas-academy">Nifas Academy</a>
+<a class="py-1 px-2 rounded hover:bg-slate-50" href="#video-hub">Video Hub</a>
+<a class="py-1 px-2 rounded hover:bg-slate-50" href="#asi-corner">ASI Corner</a>
+<a class="py-1 px-2 rounded hover:bg-slate-50" href="#oksitosin">Pijat Oksitosin</a>
+<a class="py-1 px-2 rounded text-red-500 font-semibold hover:bg-red-50" href="#tanda-bahaya">Tanda Bahaya Nifas</a>
+<a class="py-1 px-2 rounded hover:bg-slate-50" href="#mental-health">Kesehatan Mental</a>
+<a class="py-1 px-2 rounded hover:bg-slate-50" href="#faq">FAQ</a>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: Hero Section -->
+<section class="relative pt-8 md:pt-14 pb-12 px-6 md:px-12 overflow-hidden" data-purpose="hero-section" id="hero">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<!-- Hero Left Column: Headline and Call To Action -->
+<div class="md:col-span-6 z-10 text-center md:text-left">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-brand-orange text-xs font-semibold mb-4">
+<span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+              Panduan Resmi &amp; Teruji Medis
+            </div>
+<h1 class="text-4xl sm:text-5xl lg:text-[64px] 2xl:text-[76px] font-bold text-slate-800 leading-[1.15] mb-4">
+              Hai, Ibu Nifas!
+            </h1>
+<p class="text-slate-600 text-base md:text-lg mb-2 font-medium">
+              NIFASIA – Pendampingan Penuh Kasih di Masa Nifas (Puerperium).
+            </p>
+<p class="text-slate-500 text-xs sm:text-sm lg:text-base max-w-xl mx-auto md:mx-0 mb-8 leading-relaxed">
+              Dapatkan edukasi medis tervalidasi mengenai pemulihan tubuh 42 hari pasca persalinan, manajemen ASI, hingga dukungan kesehatan emosional Anda.
+            </p>
+<div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+<a class="w-full sm:w-auto px-8 py-3.5 bg-brand-orange hover:bg-brand-orangeHover text-white font-medium text-sm rounded-full shadow-md hover:shadow-lg transition text-center" href="#nifas-academy">
+                Mulai Belajar Sekarang
+              </a>
+<a class="w-full sm:w-auto px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm rounded-full transition text-center" href="#tanda-bahaya">
+                Cek Tanda Bahaya ⚠️
+              </a>
+</div>
+</div>
+<!-- Hero Right Column: Mother & Child Cloud Photo Card -->
+<div class="md:col-span-6 flex justify-center md:justify-end relative">
+<!-- Decorative Cloud Backdrop -->
+<div class="relative w-full max-w-[420px] lg:max-w-[540px] 2xl:max-w-[620px] aspect-square rounded-full hero-photo float-slow bg-gradient-to-tr from-amber-50 via-rose-50 to-blue-50 p-3 shadow-inner flex items-center justify-center">
+<div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg bg-amber-100/30">
+<img referrerpolicy="no-referrer" alt="Ibu menggendong bayi baru lahir dengan penuh kasih sayang" class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVriTB2iIqax4K0yCoTRMMlvrIidyVw1udU1FzW5JJc9nJzYSYyWHImskDRdLb8AOJ61yPHm38thoVn0gf7THIeRgDJyMEpOjGacyOt9WPswUki8jGuIKrPuwVyYsvTfnW40mqizOFUMc0cunsXNtFIY7Xh-FhZoHNYRWlR7Thw2Qgq8zAD8bd940gJUvrTXzt0yq6wYw36PkWQfiMfSRmp799dCXTV8dN5eUYt1s"/>
+</div>
+<!-- Doodled Paper Plane Badge floating -->
+<div class="absolute -bottom-2 -left-4 float-slower bg-white px-4 py-2.5 rounded-2xl shadow-lg border border-slate-100 flex items-center gap-2">
+<span class="text-xl">🤱</span>
+<div class="text-left">
+<p class="text-[11px] font-bold text-slate-800 leading-tight">42 Hari Istimewa</p>
+<p class="text-[9px] text-slate-500">Pulih sehat bersama buah hati</p>
+</div>
+</div>
+<!-- Floating Star Badge -->
+<div class="absolute top-4 -right-2 float-slow bg-white p-3 rounded-full shadow border border-slate-100">
+<svg fill="#F5A02A" height="24" viewbox="0 0 24 24" width="24">
+<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: 3 Pastel Feature Badges (Matches Reference Style) -->
+<section class="px-6 md:px-12 py-6 border-y border-slate-100/80 bg-slate-50/50" data-purpose="three-pastel-badges">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+<!-- Badge 1: Nifas Academy -->
+<a class="group flex flex-col items-center text-center p-3 rounded-2xl hover:bg-white hover:shadow-sm transition" href="#nifas-academy">
+<div class="w-16 h-16 rounded-full bg-[#FFE5EC] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm">
+<!-- House/Heart Pastel Icon -->
+<svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<path d="M9 22V12h6v10"></path>
+</svg>
+</div>
+<span class="font-heading font-semibold text-slate-800 text-sm flex items-center gap-1 group-hover:text-brand-orange transition-colors">
+              Nifas Academy 
+              <span class="text-xs text-brand-orange">▸</span>
+</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Panduan fase &amp; fisik ibu</span>
+</a>
+<!-- Badge 2: ASI Corner -->
+<a class="group flex flex-col items-center text-center p-3 rounded-2xl hover:bg-white hover:shadow-sm transition" href="#asi-corner">
+<div class="w-16 h-16 rounded-full bg-[#FFF3CD] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm">
+<!-- Baby Stroller Icon -->
+<svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+<path d="M16 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+<path d="M2 5h3.5l2.6 8.5a2 2 0 0 0 2 1.5h8.4a2 2 0 0 0 2 -1.5L22 7H7"></path>
+</svg>
+</div>
+<span class="font-heading font-semibold text-slate-800 text-sm flex items-center gap-1 group-hover:text-brand-orange transition-colors">
+              ASI Corner 
+              <span class="text-xs text-brand-orange">▸</span>
+</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Laktasi &amp; Pijat Oksitosin</span>
+</a>
+<!-- Badge 3: Nifas Alert -->
+<a class="group flex flex-col items-center text-center p-3 rounded-2xl hover:bg-white hover:shadow-sm transition" href="#tanda-bahaya">
+<div class="w-16 h-16 rounded-full bg-[#E0F2FE] flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-sm">
+<!-- Balloons / Alert Icon -->
+<svg class="w-8 h-8 text-sky-600" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+</div>
+<span class="font-heading font-semibold text-slate-800 text-sm flex items-center gap-1 group-hover:text-brand-orange transition-colors">
+              Nifas Alert 
+              <span class="text-xs text-brand-orange">▸</span>
+</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Deteksi dini tanda bahaya</span>
+</a>
+</div>
+</section>
+<!-- END: 3 Pastel Feature Badges -->
+<!-- BEGIN: Quick Overview Cards (2 Picture Cards + 2 Dark Slate Cards) -->
+<section class="px-6 md:px-12 py-12" data-purpose="quick-overview-grid">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Quick Card 1: Edukasi Nutrisi & Pemulihan (with Photo) -->
+<div class="md:col-span-4 bg-white rounded-3xl border border-slate-100 p-4 shadow-sm hover:shadow-md transition">
+<div class="w-full h-44 rounded-2xl overflow-hidden mb-4 bg-amber-50">
+<img referrerpolicy="no-referrer" alt="Nutrisi seimbang untuk ibu nifas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjNLKGhhJpPJCHaf6KxA09zq0Z7c_kG0NtpK61yhPZD2YfWfe9o9c0JC0tIVOxzDgvn3nL0AOQC34Fj496Pc57NlfUoGfStsG0vakjKRB6NtnJ8CpO5FiXpjusqfv-AL6By_NzrQrXsr25SLeOLdNM2UQnYgorLOnCr9wmFZfglNekgMtdkPs7jiAnYSj9tN7r8ES-VyP_K4moUg5Tfj7xlza3hL_fTzctyHCkz9s"/>
+</div>
+<h3 class="font-heading font-bold text-slate-800 text-lg mb-1">Nutrisi Pemulihan</h3>
+<p class="text-xs text-slate-500 leading-relaxed">
+              Pola piring seimbang tinggi protein (telur, ikan), zat besi, dan cairan minimal 3 liter setiap hari guna mempercepat pemulihan organ panggul.
+            </p>
+</div>
+<!-- Quick Card 2: Senam & Mobilitas Bertahap (with Photo) -->
+<div class="md:col-span-4 bg-white rounded-3xl border border-slate-100 p-4 shadow-sm hover:shadow-md transition">
+<div class="w-full h-44 rounded-2xl overflow-hidden mb-4 bg-rose-50">
+<img referrerpolicy="no-referrer" alt="Ibu melakukan senam kegel dan mobilisasi ringan" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8e37f1GPD54Wt46YJKzUpS5dhbmApqom1pmB_qVqKfZOohCX-GgX3yfWVDDQzBPeYJtOsKcfO7lyEqZyeRHUwZMbFW4aRZFjsS2XojuKNTDRc2I2AerQe3k9bMAvNMV1ZY-jXtyEGeP4_ttNKklWma_soNRTGxWzoAN-43vXt0W6Y_Ud2H_l6iG4X-SPLu3S0vY_TTRBPkyesi6ig8yT9kE2K1OwjU-xlMilq8wA"/>
+</div>
+<h3 class="font-heading font-bold text-slate-800 text-lg mb-1">Mobilisasi Dini</h3>
+<p class="text-xs text-slate-500 leading-relaxed">
+              Bergerak bertahap 6–8 jam pasca persalinan normal memperlancar peredaran darah, mencegah trombosis, dan melatih otot dasar panggul (Kegel).
+            </p>
+</div>
+<!-- Quick Right Column: 2 Slate Dark Cards -->
+<div class="md:col-span-4 flex flex-col gap-4">
+<!-- Dark Slate Card 1: Fakta Singkat Nifas -->
+<div class="bg-brand-dark text-white rounded-3xl p-5 shadow-sm">
+<h4 class="font-heading font-bold text-base mb-1.5 text-amber-300 flex items-center gap-2">
+<svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10" stroke-width="2"></circle>
+<polyline points="12 6 12 12 16 14" stroke-width="2"></polyline>
+</svg>
+                Fakta Durasi Nifas
+              </h4>
+<p class="text-xs text-slate-300 mb-2 leading-relaxed">
+                Masa puerperium berlangsung selama <strong>6 minggu (±42 hari)</strong> sejak plasenta lahir hingga organ reproduksi kembali ke kondisi semula.
+              </p>
+<div class="text-[11px] text-amber-200/90 font-mono bg-white/10 px-3 py-1.5 rounded-xl">
+                ✓ KF1: 6 jam - 2 hari  |  ✓ KF2: 3 - 7 hari
+              </div>
+</div>
+<!-- Dark Slate Card 2: Callout / Butuh Bantuan Segera? -->
+<div class="bg-brand-dark text-white rounded-3xl p-5 shadow-sm flex flex-col justify-between flex-1">
+<div>
+<h4 class="font-heading font-bold text-base mb-1 text-white">Butuh Bantuan Segera?</h4>
+<p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  Mengalami perdarahan hebat, demam tinggi, atau pusing hebat? Segera hubungi faskes atau bidan terdekat.
+                </p>
+</div>
+<a class="block w-full py-2.5 px-4 bg-brand-orange hover:bg-brand-orangeHover text-white text-xs font-semibold rounded-2xl text-center shadow transition" href="#tanda-bahaya">
+                Lihat Panduan Darurat
+              </a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Quick Overview Cards -->
+<!-- BEGIN: Mid Banner Split (Matches Reference 6m-6y section) -->
+<section class="px-6 md:px-12 py-10 bg-gradient-to-r from-amber-50/50 to-rose-50/50 relative overflow-hidden" data-purpose="banner-split">
+<!-- Subtle hand-drawn kite doodle -->
+<div class="absolute top-4 right-8 text-indigo-400 opacity-60">
+<svg fill="none" height="40" stroke="currentColor" stroke-width="1.8" viewbox="0 0 40 40" width="40">
+<polygon points="20,4 34,18 20,32 6,18"></polygon>
+<line stroke-dasharray="2 2" x1="20" x2="20" y1="4" y2="32"></line>
+<line stroke-dasharray="2 2" x1="6" x2="34" y1="18" y2="18"></line>
+<path d="M20 32 Q25 36 28 40"></path>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-6">
+<!-- Sun doodle icon -->
+<div class="w-10 h-10 mb-3 text-amber-500">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" x2="12" y1="1" y2="3"></line>
+<line x1="12" x2="12" y1="21" y2="23"></line>
+<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line>
+<line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
+<line x1="1" x2="3" y1="12" y2="12"></line>
+<line x1="21" x2="23" y1="12" y2="12"></line>
+<line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line>
+<line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
+</svg>
+</div>
+<h2 class="text-3xl sm:text-4xl font-bold text-slate-800 leading-tight mb-3">
+              Masa Nifas Sehat,<br/>Ibu Bahagia, Bayi Ceria
+            </h2>
+<p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+              Transisi pasca melahirkan bukan hanya tentang bayi baru lahir, melainkan penyembuhan seutuhnya bagi raga dan jiwa seorang ibu. Didukung bidan dan konselor laktasi bersertifikasi.
+            </p>
+<a class="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orangeHover text-white text-xs font-semibold rounded-full shadow transition" href="#mental-health">
+              Cek Kondisi Emosional Anda <span>→</span>
+</a>
+<!-- Little bird doodle -->
+<div class="mt-6 opacity-40">
+<svg fill="none" height="32" stroke="#343F4B" stroke-width="1.8" viewbox="0 0 24 24" width="32">
+<path d="M16 7 Q19 10 22 10 Q19 13 14 12 Q8 17 3 14 Q2 10 7 9 Q10 4 16 7 Z"></path>
+</svg>
+</div>
+</div>
+<!-- Rounded Image container matching photo of baby sleeping -->
+<div class="md:col-span-6">
+<div class="rounded-3xl overflow-hidden shadow-lg border-4 border-white bg-white">
+<img referrerpolicy="no-referrer" alt="Kasih sayang ibu memeluk bayi baru lahir" class="w-full h-72 sm:h-80 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOqRDknH4KMsF2qCe6LdReHwB8KgnIedcb0rtucQgpGsFcN_ld8bIZk6H27jVTIJaLmBf7BFe2KofQ3xukFg_Q93RBkfdSy-jjvNkXmptq17Oy6quTaWsKWHmkP-yymZadotQQWZD8WhCTnKzENXUqCwurWchubvO7Eh7ZjrgT0Hkrq2wMrmt5WeZ8j-UwY_vrK5hJ_RV5EKQlcVZtMn8kU1r8xWMN2dL3si_C4_A"/>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Mid Banner Split -->
+<!-- BEGIN: Nifas Academy Section -->
+<section class="px-6 md:px-12 py-16" data-purpose="nifas-academy-timeline" id="nifas-academy">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-xs font-bold text-brand-orange tracking-wider uppercase bg-amber-50 px-3 py-1 rounded-full">Kurikulum Terpadu</span>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-3">Nifas Academy</h2>
+<p class="text-xs md:text-sm text-slate-500">
+            Pelajari setiap fase puerperium dan jadwal kunjungan nifas (KF) sesuai standar Kementerian Kesehatan RI.
+          </p>
+</div>
+<!-- 3 Tahapan Nifas Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-rose-50/40 rounded-3xl p-6 border border-rose-100 hover:shadow-md transition">
+<span class="inline-block px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full mb-3">Tahap 1</span>
+<h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Puerperium Dini</h3>
+<p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Masa <strong>0 – 24 jam</strong> pasca persalinan. Ibu dianjurkan untuk mulai mobilisasi bertahap serta pemantauan ketat kontraksi dan perdarahan.
+            </p>
+<ul class="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+<li>Inisiasi Menyusu Dini (IMD)</li>
+<li>Pemeriksaan fundus uteri</li>
+</ul>
+</div>
+<div class="bg-amber-50/40 rounded-3xl p-6 border border-amber-100 hover:shadow-md transition">
+<span class="inline-block px-3 py-1 bg-amber-100 text-brand-orange text-xs font-bold rounded-full mb-3">Tahap 2</span>
+<h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Puerperium Intermedial</h3>
+<p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Masa <strong>1 – 7 hari</strong>. Terjadi proses involusi uterus (rahim mengecil) secara bertahap dan peralihan kolostrum menjadi ASI matur.
+            </p>
+<ul class="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+<li>Pengawasan pengeluaran lochea</li>
+<li>Perawatan higienitas perineum</li>
+</ul>
+</div>
+<div class="bg-sky-50/40 rounded-3xl p-6 border border-sky-100 hover:shadow-md transition">
+<span class="inline-block px-3 py-1 bg-sky-100 text-sky-700 text-xs font-bold rounded-full mb-3">Tahap 3</span>
+<h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Remote Puerperium</h3>
+<p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Masa <strong>1 – 6 minggu (hingga 42 hari)</strong>. Waktu bagi organ kewanitaan untuk pulih sempurna dan adaptasi pola pengasuhan.
+            </p>
+<ul class="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+<li>Konseling kontrasepsi (KB pascasalin)</li>
+<li>Pemulihan stabilitas emosi</li>
+</ul>
+</div>
+</div>
+<!-- Timeline Jadwal Kunjungan KF1 - KF4 -->
+<div class="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-100">
+<h3 class="font-heading font-bold text-xl text-slate-800 mb-6 text-center">Jadwal Standar Kunjungan Nifas (KF1 - KF4)</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white p-4 rounded-2xl shadow-sm border-t-4 border-brand-orange">
+<span class="text-xs font-bold text-brand-orange">KF 1</span>
+<h4 class="font-semibold text-slate-800 text-sm mt-1">6 Jam – 2 Hari</h4>
+<p class="text-[11px] text-slate-500 mt-2 leading-relaxed">
+                Pemeriksaan perdarahan pervaginam, fundus, tekanan darah, suhu, dan pencegahan hipotermia pada bayi.
+              </p>
+</div>
+<div class="bg-white p-4 rounded-2xl shadow-sm border-t-4 border-brand-orange">
+<span class="text-xs font-bold text-brand-orange">KF 2</span>
+<h4 class="font-semibold text-slate-800 text-sm mt-1">3 Hari – 7 Hari</h4>
+<p class="text-[11px] text-slate-500 mt-2 leading-relaxed">
+                Evaluasi involusi rahim, cairan lochea, tali pusat bayi, kecukupan asupan ASI, serta eliminasi BAB/BAK.
+              </p>
+</div>
+<div class="bg-white p-4 rounded-2xl shadow-sm border-t-4 border-brand-orange">
+<span class="text-xs font-bold text-brand-orange">KF 3</span>
+<h4 class="font-semibold text-slate-800 text-sm mt-1">8 Hari – 28 Hari</h4>
+<p class="text-[11px] text-slate-500 mt-2 leading-relaxed">
+                Pemeriksaan proses penyembuhan luka jahitan, deteksi baby blues, kenaikan berat badan bayi baru lahir.
+              </p>
+</div>
+<div class="bg-white p-4 rounded-2xl shadow-sm border-t-4 border-brand-orange">
+<span class="text-xs font-bold text-brand-orange">KF 4</span>
+<h4 class="font-semibold text-slate-800 text-sm mt-1">29 Hari – 42 Hari</h4>
+<p class="text-[11px] text-slate-500 mt-2 leading-relaxed">
+                Evaluasi akhir masa nifas, konseling kontrasepsi / KB nifas, serta kesiapan kembali beraktivitas normal.
+              </p>
+</div>
+</div>
+</div>
+<!-- Tabel Sederhana: Jenis-Jenis Lochea -->
+<div class="mt-8 bg-white rounded-3xl p-6 border border-slate-100 shadow-sm overflow-x-auto">
+<h4 class="font-heading font-bold text-base text-slate-800 mb-3">Kenali Jenis Pengeluaran Darah Nifas (Lochea)</h4>
+<table class="w-full text-left text-xs">
+<thead>
+<tr class="border-b border-slate-200 text-slate-500">
+<th class="py-2 font-semibold">Jenis Lochea</th>
+<th class="py-2 font-semibold">Rentang Waktu</th>
+<th class="py-2 font-semibold">Ciri Warna &amp; Karakter</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-600">
+<tr>
+<td class="py-2.5 font-semibold text-rose-600">Lochea Rubra</td>
+<td class="py-2.5">Hari 1 – 3</td>
+<td class="py-2.5">Merah cerah kehitaman, mengandung darah segar &amp; sisa plasenta.</td>
+</tr>
+<tr>
+<td class="py-2.5 font-semibold text-amber-600">Lochea Sanguinolenta</td>
+<td class="py-2.5">Hari 3 – 7</td>
+<td class="py-2.5">Merah kecokelatan berlendir.</td>
+</tr>
+<tr>
+<td class="py-2.5 font-semibold text-yellow-600">Lochea Serosa</td>
+<td class="py-2.5">Hari 7 – 14</td>
+<td class="py-2.5">Kuning kecokelatan muda, cairan lebih encer.</td>
+</tr>
+<tr>
+<td class="py-2.5 font-semibold text-emerald-600">Lochea Alba</td>
+<td class="py-2.5">&gt; 2 Minggu</td>
+<td class="py-2.5">Putih keputihan bening, tidak berbau busuk.</td>
+</tr>
+</tbody>
+</table>
+<p class="text-[11px] text-slate-400 mt-2 italic">*Jika lochea berbau busuk tajam atau keluar gumpalan sebesar bola tenis, segera periksakan diri.</p>
+</div>
+</section>
+<!-- END: Nifas Academy Section -->
+<!-- BEGIN: Video Hub Section (Filterable Gallery) -->
+<section class="px-6 md:px-12 py-12 bg-slate-50/70 border-y border-slate-100" data-purpose="video-hub" id="video-hub">
+<div class="text-center max-w-2xl mx-auto mb-8">
+<span class="text-xs font-bold text-brand-orange uppercase bg-amber-100 px-3 py-1 rounded-full">Demonstrasi Praktis</span>
+<h2 class="text-3xl font-bold text-slate-800 mt-2 mb-2">Video Hub NIFASIA</h2>
+<p class="text-xs md:text-sm text-slate-500">
+            Video edukasi pilihan seputar masa nifas, menyusui, dan perawatan bayi.
+          </p>
+</div>
+<!-- Video Filter Buttons -->
+<div class="flex flex-wrap items-center justify-center gap-2 mb-8" id="video-filter-buttons">
+<button class="filter-btn active px-4 py-2 rounded-full text-xs font-medium bg-brand-orange text-white shadow-sm transition" data-filter="all">Semua Video</button>
+<button class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-slate-600 hover:bg-slate-100 transition" data-filter="laktasi">Menyusui &amp; Laktasi</button>
+<button class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-slate-600 hover:bg-slate-100 transition" data-filter="fisik">Pemulihan &amp; Perawatan</button>
+<button class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-slate-600 hover:bg-slate-100 transition" data-filter="mental">Kesehatan Mental</button>
+</div>
+<!-- Video Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="video-cards-grid">
+<!-- Video Card 1 -->
+<div class="video-item bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition" data-category="fisik">
+<div class="relative w-full bg-slate-200 rounded-xl overflow-hidden mb-3" style="aspect-ratio:16/9">
+<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/O5k1JA2qc3k?rel=0" title="Mengenali Tanda Bahaya Masa Nifas" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<h4 class="font-heading font-semibold text-slate-800 text-sm">Mengenali Tanda Bahaya Masa Nifas</h4>
+<p class="text-[11px] text-slate-500 mt-1">Kenali tanda bahaya setelah melahirkan agar ibu dan keluarga tidak terlambat mencari pertolongan.</p>
+<a href="https://youtu.be/O5k1JA2qc3k" target="_blank" rel="noopener" class="inline-block mt-2 text-[11px] font-semibold text-brand-orange hover:underline">Buka di YouTube ↗</a>
+</div>
+<!-- Video Card 2 -->
+<div class="video-item bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition" data-category="laktasi">
+<div class="relative w-full bg-slate-200 rounded-xl overflow-hidden mb-3" style="aspect-ratio:16/9">
+<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/ILOFnbpBFvA?rel=0" title="Posisi dan Pelekatan Menyusui yang Benar" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<h4 class="font-heading font-semibold text-slate-800 text-sm">Posisi dan Pelekatan Menyusui yang Benar</h4>
+<p class="text-[11px] text-slate-500 mt-1">Contoh posisi menyusui dan pelekatan yang tepat agar bayi menyusu efektif dan ibu nyaman.</p>
+<a href="https://youtu.be/ILOFnbpBFvA" target="_blank" rel="noopener" class="inline-block mt-2 text-[11px] font-semibold text-brand-orange hover:underline">Buka di YouTube ↗</a>
+</div>
+<!-- Video Card 3 -->
+<div class="video-item bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition" data-category="laktasi">
+<div class="relative w-full bg-slate-200 rounded-xl overflow-hidden mb-3" style="aspect-ratio:16/9">
+<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/do4dPGHL-0U?rel=0" title="Cara Mengenali Kecukupan ASI" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<h4 class="font-heading font-semibold text-slate-800 text-sm">Cara Mengenali Kecukupan ASI</h4>
+<p class="text-[11px] text-slate-500 mt-1">Tanda-tanda bayi mendapatkan ASI yang cukup, dalam video singkat.</p>
+<a href="https://youtube.com/shorts/do4dPGHL-0U" target="_blank" rel="noopener" class="inline-block mt-2 text-[11px] font-semibold text-brand-orange hover:underline">Buka di YouTube ↗</a>
+</div>
+<!-- Video Card 4 -->
+<div class="video-item bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition" data-category="laktasi">
+<div class="relative w-full bg-slate-200 rounded-xl overflow-hidden mb-3" style="aspect-ratio:16/9">
+<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/fEFzEsvYSYM?rel=0" title="Pijat Oksitosin" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<h4 class="font-heading font-semibold text-slate-800 text-sm">Pijat Oksitosin</h4>
+<p class="text-[11px] text-slate-500 mt-1">Demonstrasi pijat oksitosin untuk membantu ibu rileks dan mendukung pengeluaran ASI.</p>
+<a href="https://youtu.be/fEFzEsvYSYM" target="_blank" rel="noopener" class="inline-block mt-2 text-[11px] font-semibold text-brand-orange hover:underline">Buka di YouTube ↗</a>
+</div>
+<!-- Video Card 5 -->
+<div class="video-item bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition" data-category="fisik">
+<div class="relative w-full bg-slate-200 rounded-xl overflow-hidden mb-3" style="aspect-ratio:16/9">
+<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/j8iBmN1zFS0?rel=0" title="Perawatan Bayi Baru Lahir dan Tanda Bahayanya" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<h4 class="font-heading font-semibold text-slate-800 text-sm">Perawatan Bayi Baru Lahir dan Tanda Bahayanya</h4>
+<p class="text-[11px] text-slate-500 mt-1">Cara merawat bayi baru lahir serta tanda bahaya yang perlu diwaspadai.</p>
+<a href="https://youtu.be/j8iBmN1zFS0" target="_blank" rel="noopener" class="inline-block mt-2 text-[11px] font-semibold text-brand-orange hover:underline">Buka di YouTube ↗</a>
+</div>
+<!-- Video Card 6 -->
+<div class="video-item bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition" data-category="mental">
+<div class="relative w-full bg-slate-200 rounded-xl overflow-hidden mb-3" style="aspect-ratio:16/9">
+<iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/xsn1M0-Fp7Q?rel=0" title="Perubahan Emosional dan Kesehatan Mental Ibu Nifas" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<h4 class="font-heading font-semibold text-slate-800 text-sm">Perubahan Emosional dan Kesehatan Mental Ibu Nifas</h4>
+<p class="text-[11px] text-slate-500 mt-1">Memahami perubahan emosi setelah melahirkan dan kapan perlu mencari bantuan.</p>
+<a href="https://youtu.be/xsn1M0-Fp7Q" target="_blank" rel="noopener" class="inline-block mt-2 text-[11px] font-semibold text-brand-orange hover:underline">Buka di YouTube ↗</a>
+</div>
+</div>
+</section>
+<!-- END: Video Hub Section -->
+<!-- BEGIN: ASI Corner Section & Mitos vs Fakta Flip Cards -->
+<section class="px-6 md:px-12 py-16" data-purpose="asi-corner" id="asi-corner">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-xs font-bold text-amber-600 uppercase bg-amber-100 px-3 py-1 rounded-full">Laktasi Paripurna</span>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-3">ASI Corner</h2>
+<p class="text-xs md:text-sm text-slate-500">
+            Kunci sukses menyusui eksklusif: pemahaman teknik, kenyamanan ibu, dan fakta ilmiah seputar ASI.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+<!-- Box 1: Tanda Kecukupan ASI -->
+<div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+<h3 class="font-heading font-bold text-xl text-slate-800 mb-4 flex items-center gap-2">
+<span class="text-brand-orange">🍼</span> Tanda Bayi Mendapat Cukup ASI
+            </h3>
+<ul class="space-y-3 text-xs text-slate-600">
+<li class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+<span><strong>Buang Air Kecil (BAK):</strong> Minimal 6 kali sehari dengan warna urine jernih atau kuning muda.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+<span><strong>Kenaikan Berat Badan:</strong> Berat bayi kembali ke berat lahir pada usia 10–14 hari dan terus naik stabil.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+<span><strong>Irama Menyusu:</strong> Terdengar suara menelan lambat dan teratur, bukan sekadar hisapan cepat.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">✓</span>
+<span><strong>Kondisi Payudara:</strong> Terasa lebih lunak dan lega setelah proses menyusui selesai.</span>
+</li>
+</ul>
+</div>
+<!-- Box 2: Panduan Manajemen ASI Perah (ASIP) -->
+<div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+<h3 class="font-heading font-bold text-xl text-slate-800 mb-4 flex items-center gap-2">
+<span class="text-brand-orange">❄️</span> Panduan Daya Simpan ASI Perah (ASIP)
+            </h3>
+<div class="space-y-3 text-xs text-slate-600">
+<div class="p-3 rounded-2xl bg-slate-50 flex items-center justify-between">
+<div>
+<p class="font-semibold text-slate-800">Suhu Ruang (25°C)</p>
+<p class="text-[11px] text-slate-500">Tersimpan dalam wadah steril tertutup</p>
+</div>
+<span class="font-mono font-bold text-brand-orange text-xs bg-amber-50 px-2 py-1 rounded">3 – 4 Jam</span>
+</div>
+<div class="p-3 rounded-2xl bg-slate-50 flex items-center justify-between">
+<div>
+<p class="font-semibold text-slate-800">Kulkas Bawah / Chiller (4°C)</p>
+<p class="text-[11px] text-slate-500">Letakkan di bagian dalam, hindari pintu</p>
+</div>
+<span class="font-mono font-bold text-brand-orange text-xs bg-amber-50 px-2 py-1 rounded">3 – 4 Hari</span>
+</div>
+<div class="p-3 rounded-2xl bg-slate-50 flex items-center justify-between">
+<div>
+<p class="font-semibold text-slate-800">Freezer 2 Pintu (-18°C)</p>
+<p class="text-[11px] text-slate-500">Kondisi beku stabil optimal</p>
+</div>
+<span class="font-mono font-bold text-brand-orange text-xs bg-amber-50 px-2 py-1 rounded">3 – 6 Bulan</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mitos vs Fakta Flip Cards (Interactive Hover/Tap) -->
+<h3 class="font-heading font-bold text-2xl text-slate-800 text-center mb-6">Mitos vs Fakta Menyusui</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Flip Card 1 -->
+<div class="flip-card h-52 perspective-1000 group">
+<div class="flip-card-inner relative w-full h-full text-center transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full bg-rose-50 border-2 border-dashed border-rose-300 rounded-3xl p-5 flex flex-col justify-center items-center backface-hidden shadow-sm">
+<span class="text-xs font-bold uppercase text-rose-600 bg-rose-100 px-3 py-1 rounded-full mb-2">Mitos #1</span>
+<p class="font-heading font-semibold text-slate-800 text-sm">"Payudara berukuran kecil tidak menghasilkan cukup banyak ASI."</p>
+<span class="text-[11px] text-slate-400 mt-3">Arahkan kursor / sentuh untuk melihat fakta ↻</span>
+</div>
+<!-- Back Face -->
+<div class="absolute inset-0 w-full h-full bg-slate-800 text-white rounded-3xl p-5 flex flex-col justify-center items-center rotate-y-180 backface-hidden shadow-md">
+<span class="text-xs font-bold uppercase text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full mb-2">Fakta Medis</span>
+<p class="text-xs leading-relaxed text-slate-200">
+                  Ukuran payudara dipengaruhi oleh jaringan lemak, bukan jumlah kelenjar susu alveoli. Semua ukuran payudara mampu memproduksi ASI berlimpah sesuai kebutuhan bayi.
+                </p>
+</div>
+</div>
+</div>
+<!-- Flip Card 2 -->
+<div class="flip-card h-52 perspective-1000 group">
+<div class="flip-card-inner relative w-full h-full text-center transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full bg-amber-50 border-2 border-dashed border-amber-300 rounded-3xl p-5 flex flex-col justify-center items-center backface-hidden shadow-sm">
+<span class="text-xs font-bold uppercase text-brand-orange bg-amber-100 px-3 py-1 rounded-full mb-2">Mitos #2</span>
+<p class="font-heading font-semibold text-slate-800 text-sm">"Kolostrum pertama yang kekuningan itu susu basi dan harus dibuang."</p>
+<span class="text-[11px] text-slate-400 mt-3">Arahkan kursor / sentuh untuk melihat fakta ↻</span>
+</div>
+<!-- Back Face -->
+<div class="absolute inset-0 w-full h-full bg-slate-800 text-white rounded-3xl p-5 flex flex-col justify-center items-center rotate-y-180 backface-hidden shadow-md">
+<span class="text-xs font-bold uppercase text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full mb-2">Fakta Medis</span>
+<p class="text-xs leading-relaxed text-slate-200">
+                  Kolostrum adalah cairan emas penuh antibodi (IgA) dan protein tinggi sebagai vaksin alami pertama untuk kekebalan dinding usus bayi. Sangat wajib diberikan!
+                </p>
+</div>
+</div>
+</div>
+<!-- Flip Card 3 -->
+<div class="flip-card h-52 perspective-1000 group">
+<div class="flip-card-inner relative w-full h-full text-center transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+<!-- Front Face -->
+<div class="absolute inset-0 w-full h-full bg-sky-50 border-2 border-dashed border-sky-300 rounded-3xl p-5 flex flex-col justify-center items-center backface-hidden shadow-sm">
+<span class="text-xs font-bold uppercase text-sky-600 bg-sky-100 px-3 py-1 rounded-full mb-2">Mitos #3</span>
+<p class="font-heading font-semibold text-slate-800 text-sm">"Ibu flu / batuk dilarang menyusui agar bayi tidak tertular penyakit."</p>
+<span class="text-[11px] text-slate-400 mt-3">Arahkan kursor / sentuh untuk melihat fakta ↻</span>
+</div>
+<!-- Back Face -->
+<div class="absolute inset-0 w-full h-full bg-slate-800 text-white rounded-3xl p-5 flex flex-col justify-center items-center rotate-y-180 backface-hidden shadow-md">
+<span class="text-xs font-bold uppercase text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full mb-2">Fakta Medis</span>
+<p class="text-xs leading-relaxed text-slate-200">
+                  Antibodi yang diproduksi tubuh ibu justru ditransfer lewat ASI untuk memproteksi bayi. Ibu cukup memakai masker dan mencuci tangan sebelum menyusui.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ASI Corner Section -->
+<!-- BEGIN: Pijat Oksitosin (Step-by-Step Massage Guide) -->
+<section class="px-6 md:px-12 py-16 bg-gradient-to-b from-amber-50/40 to-white" data-purpose="oxytocin-massage" id="oksitosin">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-xs font-bold text-brand-orange uppercase bg-white border border-amber-200 px-3 py-1 rounded-full">Sentuhan Hormon Cinta</span>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-3">Panduan Pijat Oksitosin</h2>
+<p class="text-xs md:text-sm text-slate-500">
+            Meningkatkan hormon oksitosin untuk merangsang refleks pengeluaran ASI (Let-Down Reflex), meredakan ketegangan leher, dan mempercepat involusi rahim.
+          </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Step 1 -->
+<div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-2xl bg-amber-100 text-brand-orange font-heading font-bold text-lg flex items-center justify-center mb-4">
+              01
+            </div>
+<h4 class="font-heading font-bold text-base text-slate-800 mb-2">Posisi Duduk Rileks</h4>
+<p class="text-xs text-slate-500 leading-relaxed">
+              Ibu duduk menghadap meja, melipat lengan di atas bantal, dan menopang dahi dengan nyaman tanpa menekan payudara.
+            </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-2xl bg-amber-100 text-brand-orange font-heading font-bold text-lg flex items-center justify-center mb-4">
+              02
+            </div>
+<h4 class="font-heading font-bold text-base text-slate-800 mb-2">Minyak &amp; Pemanasan</h4>
+<p class="text-xs text-slate-500 leading-relaxed">
+              Pendamping (suami/keluarga) melumuri kedua tangan dengan baby oil/minyak kelapa, lalu usap lembut bahu ibu untuk meredakan tegang.
+            </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-2xl bg-amber-100 text-brand-orange font-heading font-bold text-lg flex items-center justify-center mb-4">
+              03
+            </div>
+<h4 class="font-heading font-bold text-base text-slate-800 mb-2">Gerakan Melingkar</h4>
+<p class="text-xs text-slate-500 leading-relaxed">
+              Kepalkan kedua jempol, buat pijatan melingkar kecil di kedua sisi tulang belakang sepanjang 2-3 cm dari leher bawah hingga tulang belikat.
+            </p>
+</div>
+<!-- Step 4 -->
+<div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-2xl bg-amber-100 text-brand-orange font-heading font-bold text-lg flex items-center justify-center mb-4">
+              04
+            </div>
+<h4 class="font-heading font-bold text-base text-slate-800 mb-2">Durasi 3–5 Menit</h4>
+<p class="text-xs text-slate-500 leading-relaxed">
+              Lakukan secara konsisten 2–3 kali sehari sebelum menyusui atau memompa ASI sembari memperdengarkan musik relaksasi yang tenang.
+            </p>
+</div>
+</div>
+<div class="mt-8 bg-amber-100/60 rounded-2xl p-4 text-center max-w-xl mx-auto border border-amber-200 text-xs text-slate-700">
+          💡 <strong>Tips Suami Siaga:</strong> Ucapkan kalimat afirmasi positif penuh cinta saat memijat untuk melipatgandakan pelepasan hormon oksitosin istri.
+        </div>
+</section>
+<!-- END: Pijat Oksitosin -->
+<!-- BEGIN: Nifas Alert - Tanda Bahaya Nifas (High Priority Section) -->
+<section class="px-6 md:px-12 py-16 bg-red-50/50 border-y border-red-100" data-purpose="nifas-alert-section" id="tanda-bahaya">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-red-100 text-red-700 font-bold text-xs rounded-full uppercase tracking-wider mb-2">
+<span>🚨</span> Nifas Alert • Deteksi Kritis
+          </div>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-800">Tanda Bahaya Masa Nifas</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-2">
+            Kenali gejala kedaruratan maternal berikut. Jangan tunda, segera kunjungi Unit Gawat Darurat (UGD) atau fasilitas kesehatan bila mendapati salah satunya!
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<!-- Bahaya Pada Ibu -->
+<div class="bg-white rounded-3xl p-6 border-2 border-red-200 shadow-sm">
+<h3 class="font-heading font-bold text-lg text-red-600 mb-4 flex items-center gap-2">
+<svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Tanda Bahaya Pada Ibu Nifas
+            </h3>
+<ul class="space-y-2.5 text-xs text-slate-700">
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Perdarahan Masif:</strong> Pembalut basah kuyup dalam waktu kurang dari 1 jam atau keluar gumpalan darah sangat besar.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Lochea Berbau Busuk:</strong> Cairan vagina berbau menyengat disertai rasa nyeri panggul hebat.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Demam Tinggi (&gt; 38°C):</strong> Menggigil dan badan panas dalam 24 jam berturut-turut.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Gejala Preeklamsia:</strong> Sakit kepala berat tak kunjung reda, pandangan kabur, dan bengkak di wajah serta tangan.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Mastitis Akut:</strong> Payudara merah meradang keras, bengkak, sangat nyeri, dan puting bernanah.</span>
+</li>
+</ul>
+</div>
+<!-- Bahaya Pada Bayi Baru Lahir -->
+<div class="bg-white rounded-3xl p-6 border-2 border-red-200 shadow-sm">
+<h3 class="font-heading font-bold text-lg text-red-600 mb-4 flex items-center gap-2">
+<svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10" stroke-width="2"></circle>
+<line stroke-width="2" x1="12" x2="12" y1="8" y2="12"></line>
+<line stroke-width="2" x1="12" x2="12.01" y1="16" y2="16"></line>
+</svg>
+              Tanda Bahaya Pada Bayi Baru Lahir
+            </h3>
+<ul class="space-y-2.5 text-xs text-slate-700">
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Kesulitan Menyusu:</strong> Bayi malas mengisap atau tidak mau menyusu sama sekali.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Napas Sesak:</strong> Napas berbunyi cepat (&gt;60x per menit) atau tarikan dada bagian bawah ke dalam yang kuat.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Infeksi Tali Pusat:</strong> Tali pusat kemerahan meluas hingga kulit perut, bernanah, atau berbau busuk.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Ikterus Patologis:</strong> Tubuh bayi kuning pekat hingga ke telapak tangan &amp; kaki pada &lt;24 jam pertama.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-red-500 font-bold">•</span>
+<span><strong>Kejang atau Lemas Lunglai:</strong> Gerakan tidak normal berulang atau bayi sangat sulit dibangunkan.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Emergency Action Bar -->
+<div class="bg-red-600 text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+<div>
+<h4 class="font-heading font-bold text-xl mb-1">Kontak Darurat Terpadu (SPGDT)</h4>
+<p class="text-xs text-red-100 max-w-xl">
+              Siapkan buku KIA (Kesehatan Ibu dan Anak) dan segera hubungi Ambulans 119 atau faskes tempat persalinan Anda.
+            </p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<a class="px-6 py-3 bg-white text-red-600 font-bold text-xs rounded-full shadow hover:bg-red-50 transition flex items-center gap-2" href="tel:119">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20">
+<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"></path>
+</svg>
+              Telepon Darurat 119
+            </a>
+</div>
+</div>
+</section>
+<!-- END: Nifas Alert -->
+<!-- BEGIN: Postpartum Mental Health Section & Screening Quiz -->
+<section class="px-6 md:px-12 py-16" data-purpose="mental-health-section" id="mental-health">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-xs font-bold text-purple-600 uppercase bg-purple-100 px-3 py-1 rounded-full">Kesehatan Jiwa Ibu</span>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-3">Kesehatan Mental Pascasalin</h2>
+<p class="text-xs md:text-sm text-slate-500">
+            Perubahan hormonal drastis dan pola tidur baru adalah hal nyata. Memahami perasaan Anda adalah langkah awal menuju pemulihan yang damai.
+          </p>
+</div>
+<!-- 3 Level Perbandingan Kondisi Mental -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-blue-50/50 border border-blue-200 rounded-3xl p-6">
+<h3 class="font-heading font-bold text-base text-blue-900 mb-2">Baby Blues (Ringan)</h3>
+<p class="text-[11px] font-semibold text-blue-700 mb-2">Terjadi pada 70–80% ibu baru</p>
+<p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Mulai hari ke 2–3 dan membaik spontan dalam rentang <strong>maksimal 14 hari</strong>.
+            </p>
+<ul class="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+<li>Mudah menangis tanpa alasan jelas</li>
+<li>Merasa lelah dan cemas sesaat</li>
+<li>Dapat reda dengan istirahat dan support keluarga</li>
+</ul>
+</div>
+<div class="bg-amber-50/50 border border-amber-200 rounded-3xl p-6">
+<h3 class="font-heading font-bold text-base text-amber-900 mb-2">Depresi Pascasalin (PPD)</h3>
+<p class="text-[11px] font-semibold text-amber-700 mb-2">Terjadi pada 10–15% ibu</p>
+<p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Gejala berlanjut <strong>lebih dari 2 minggu</strong> hingga berbulan-bulan tanpa perbaikan.
+            </p>
+<ul class="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+<li>Kehilangan minat pada bayi</li>
+<li>Perasaan bersalah dan putus asa berat</li>
+<li>Memerlukan bantuan psikolog / psikiater</li>
+</ul>
+</div>
+<div class="bg-purple-50/50 border border-purple-200 rounded-3xl p-6">
+<h3 class="font-heading font-bold text-base text-purple-900 mb-2">Psikosis Postpartum</h3>
+<p class="text-[11px] font-semibold text-purple-700 mb-2">Kondisi gawat darurat (1–2 dari 1000)</p>
+<p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Gangguan psikologis berat yang muncul tiba-tiba dalam minggu awal pasca melahirkan.
+            </p>
+<ul class="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+<li>Halusinasi atau delusi tak wajar</li>
+<li>Pikiran menyakiti diri sendiri atau bayi</li>
+<li>Wajib penanganan medis darurat segera</li>
+</ul>
+</div>
+</div>
+<!-- Interactive Self-Screening EPDS Adaptation Quiz -->
+<div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm max-w-3xl mx-auto" id="epds-quiz-container">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-2xl">📝</span>
+<div>
+<h3 class="font-heading font-bold text-lg text-slate-800">Kuis Skrining Emosional Mandiri (Mini EPDS)</h3>
+<p class="text-xs text-slate-500">Refleksikan apa yang Anda rasakan selama 7 hari terakhir.</p>
+</div>
+</div>
+<form class="space-y-5 text-xs text-slate-700" id="epds-form">
+<!-- Question 1 -->
+<div>
+<p class="font-medium text-slate-800 mb-2">1. Saya mampu tertawa dan melihat sisi lucu dari berbagai hal:</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+<input class="text-brand-orange focus:ring-brand-orange" name="q1" required="" type="radio" value="0"/>
+<span>Sama baiknya seperti biasanya (0)</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+<input class="text-brand-orange focus:ring-brand-orange" name="q1" type="radio" value="2"/>
+<span>Jauh lebih jarang daripada biasanya (2)</span>
+</label>
+</div>
+</div>
+<!-- Question 2 -->
+<div>
+<p class="font-medium text-slate-800 mb-2">2. Saya merasa cemas atau khawatir tanpa alasan yang kuat:</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+<input class="text-brand-orange focus:ring-brand-orange" name="q2" required="" type="radio" value="0"/>
+<span>Hampir tidak pernah sama sekali (0)</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+<input class="text-brand-orange focus:ring-brand-orange" name="q2" type="radio" value="2"/>
+<span>Sangat sering hingga mengganggu (2)</span>
+</label>
+</div>
+</div>
+<!-- Question 3 -->
+<div>
+<p class="font-medium text-slate-800 mb-2">3. Hal-hal yang harus diselesaikan terasa terlalu berat menimpa saya:</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+<input class="text-brand-orange focus:ring-brand-orange" name="q3" required="" type="radio" value="0"/>
+<span>Saya mampu mengatasinya dengan baik (0)</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+<input class="text-brand-orange focus:ring-brand-orange" name="q3" type="radio" value="2"/>
+<span>Sering merasa tidak mampu bertahan (2)</span>
+</label>
+</div>
+</div>
+<button class="w-full py-3 bg-brand-orange hover:bg-brand-orangeHover text-white font-semibold text-xs rounded-xl shadow transition" type="submit">
+              Hitung Hasil Refleksi
+            </button>
+</form>
+<!-- Quiz Result Display Box -->
+<div class="hidden mt-6 p-4 rounded-2xl border text-xs" id="quiz-result"></div>
+</div>
+</section>
+<!-- END: Postpartum Mental Health Section -->
+<!-- BEGIN: 'Mengapa NIFASIA?' Section (4 Doodled Pastel Cards from Reference) -->
+<section class="px-6 md:px-12 py-16 bg-slate-50/50" data-purpose="why-nifasia-doodle-cards">
+<div class="text-center max-w-xl mx-auto mb-12">
+<!-- Doodle plane on top -->
+<div class="flex justify-center mb-2 opacity-50">
+<svg fill="none" height="24" stroke="#64748B" stroke-dasharray="3 3" stroke-width="1.8" viewbox="0 0 48 24" width="48">
+<path d="M2 12 C 15 2, 25 22, 44 8"></path>
+</svg>
+</div>
+<h2 class="text-3xl font-bold text-slate-800">Mengapa Memilih NIFASIA?</h2>
+<p class="text-xs text-slate-500 mt-1">Dirancang khusus menjawab kegelisahan keluarga baru di masa transisi.</p>
+</div>
+<!-- 4 Pastel Framed Cards matching Reference bottom row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Belajar Mandiri (Pink Dashed Frame) -->
+<div class="bg-white p-5 rounded-3xl doodle-card-dashed-pink flex flex-col items-center text-center shadow-sm">
+<div class="w-24 h-24 rounded-2xl overflow-hidden mb-3 bg-rose-50 border border-rose-200 p-1">
+<img referrerpolicy="no-referrer" alt="Ibu belajar mandiri" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBomXVMiqNDp2vTgSl1BwvAZXhz5DqPKsVjvvLRrwmw_9_fIsCjw3jZSGSYuY1wr9x0sREvsc9RJbNzY_QPuZ6hrZtZENdlLomD2lO_8VAViD6IxIthJKFGoSAButVOPkkr7j4ifCB-rCmFsHW-Ur_Y9jEBb3P6hcjcOzmxP4pSzkrraCNq1nwfVMVmFzAqa-JIiC8SGf9nOpZ5o7nTh9-S97mDcgDoXN_kRjmbfzQ"/>
+</div>
+<h4 class="font-heading font-bold text-slate-800 text-sm mb-1 text-rose-600">Akses Fleksibel</h4>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+              Materi visual ringkas yang mudah dipelajari di sela-sela waktu istirahat dan menyusui bayi.
+            </p>
+</div>
+<!-- Card 2: Dipandu Nakes (Circular Blue Frame) -->
+<div class="bg-white p-5 rounded-3xl doodle-card-dashed-blue flex flex-col items-center text-center shadow-sm">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-3 bg-sky-50 border border-sky-200 p-1">
+<img referrerpolicy="no-referrer" alt="Tenaga kesehatan" class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNXeDH20PI5iytI4p-xKtKOk5HKktFTh9L44SkH69b-d8T1H1AjIZvhYK-aQioJ6Z8jeEMB_sF3AVpxUBftjpeZ26Pex4DuV_pEUeZgBNNB2pwX4R_Jlgo-B0BqlwkuucpwZl97npIpWJMlHyBJNlwlET14AfGpdIkNJJZd49vMacq4Ubg9-JNYxgyVAc_45T5nh7z2AexxmN7tDTQ19E3AqyyFopGCEWIH8B14-0"/>
+</div>
+<h4 class="font-heading font-bold text-slate-800 text-sm mb-1 text-sky-600">Validasi Medis</h4>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+              Disusun berdasar pedoman klinis Kemenkes RI, POGI, serta konselor laktasi profesional.
+            </p>
+</div>
+<!-- Card 3: Libatkan Suami (Orange Dashed Frame) -->
+<div class="bg-white p-5 rounded-3xl doodle-card-dashed-orange flex flex-col items-center text-center shadow-sm">
+<div class="w-24 h-24 rounded-2xl overflow-hidden mb-3 bg-amber-50 border border-amber-200 p-1">
+<img referrerpolicy="no-referrer" alt="Keluarga bahagia" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSi7M67daJNF5soJ-wvEhOz7LTRADf9I92kjgjelaeynyiMAGhOKJJheRuskYEhWA4IWngIDXT7Pj2yj64yWSKa0f1ITIJvV7_-pDUKgpkwgEBiUDB556IZbw7lKKNriMmnXlXQ-vVh5YWPM5JQD6jmExRJF50-Uxug29E6c28Kh-wckxbxF2FrRZn1c62GOXqqfeU7EfzI6k6Ag_deU2R4MvCTFvys1josz-3low"/>
+</div>
+<h4 class="font-heading font-bold text-slate-800 text-sm mb-1 text-brand-orange">Peran Suami Aktif</h4>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+              Modul khusus bagi ayah untuk ikut memijat oksitosin, menggendong, dan menjaga kesehatan mental ibu.
+            </p>
+</div>
+<!-- Card 4: Ibu Sehat Bayi Tumbuh (Gray/Mint Dashed Frame) -->
+<div class="bg-white p-5 rounded-3xl doodle-card-dashed-gray flex flex-col items-center text-center shadow-sm">
+<div class="w-24 h-24 rounded-xl overflow-hidden mb-3 bg-emerald-50 border border-emerald-200 p-1">
+<img referrerpolicy="no-referrer" alt="Bayi tersenyum" class="w-full h-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlP7gH1px2y-UAm33YLCJB5ltv3B_R4TYzjrXcPgwbhXbcUQPHj39U6vYgTqK9LvU9CWJuZV54pCwkYmOnIen-4ncJlfBT3il62Vl8sEiDpAV_ByQ0srJAvVs3N-_lCNlU3gQHzcbiy0MEH8Fa_-MYG-uruZ3Tnjm8XnbMjWddEX_pqcs8-tk6mq8RqxRawxx6ImLdxN7zInYR2A9Hl8MtyjGwcrJjJjcZq6uR-ok"/>
+</div>
+<h4 class="font-heading font-bold text-slate-800 text-sm mb-1 text-emerald-600">Ibu &amp; Bayi Bahagia</h4>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+              Pemulihan fisik yang lancar menumbuhkan ikatan batin yang hangat dan masa depan generasi sehat.
+            </p>
+</div>
+</div>
+</section>
+<!-- END: 'Mengapa NIFASIA?' Section -->
+<!-- BEGIN: FAQ Accordion Section -->
+<section class="px-6 md:px-12 py-16" data-purpose="faq-section" id="faq">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<span class="text-xs font-bold text-brand-orange uppercase bg-amber-50 px-3 py-1 rounded-full">Tanya Jawab</span>
+<h2 class="text-3xl font-bold text-slate-800 mt-2 mb-2">Pertanyaan Seputar Masa Nifas</h2>
+<p class="text-xs md:text-sm text-slate-500">Hal-hal yang paling sering ditanyakan oleh ibu dan keluarga pasca melahirkan.</p>
+</div>
+<div class="max-w-3xl mx-auto space-y-3" id="faq-accordion">
+<!-- Accordion Item 1 -->
+<div class="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+<button aria-expanded="false" class="faq-toggle w-full px-5 py-4 text-left font-heading font-semibold text-sm text-slate-800 flex justify-between items-center hover:bg-slate-50 transition" type="button">
+<span>Bolehkah ibu nifas keramas dan mandi air dingin?</span>
+<span class="text-brand-orange font-bold text-lg transform transition-transform duration-200">+</span>
+</button>
+<div class="faq-content hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+<strong>Sangat boleh!</strong> Menjaga kebersihan diri (mandi dan keramas) justru mencegah infeksi kuman pada kulit dan jahitan, serta membuat tubuh terasa segar dan relaks. Gunakan air hangat jika merasa kedinginan dan keringkan rambut serta badan dengan seksama.
+            </div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+<button aria-expanded="false" class="faq-toggle w-full px-5 py-4 text-left font-heading font-semibold text-sm text-slate-800 flex justify-between items-center hover:bg-slate-50 transition" type="button">
+<span>Apakah ada pantangan makan seperti telur dan ikan agar luka cepat kering?</span>
+<span class="text-brand-orange font-bold text-lg transform transition-transform duration-200">+</span>
+</button>
+<div class="faq-content hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+<strong>Ini adalah mitos yang keliru.</strong> Ibu nifas justru sangat membutuhkan asupan protein hewani tinggi seperti telur, ikan gabus, ayam, dan daging tanpa lemak untuk mempercepat regenerasi jaringan sel luka jahitan (perineum atau SC) serta memperkaya kualitas ASI.
+            </div>
+</div>
+<!-- Accordion Item 3 -->
+<div class="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+<button aria-expanded="false" class="faq-toggle w-full px-5 py-4 text-left font-heading font-semibold text-sm text-slate-800 flex justify-between items-center hover:bg-slate-50 transition" type="button">
+<span>Kapan waktu yang aman untuk kembali berhubungan intim pasca bersalin?</span>
+<span class="text-brand-orange font-bold text-lg transform transition-transform duration-200">+</span>
+</button>
+<div class="faq-content hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Secara medis, hubungan suami istri dianjurkan setelah masa nifas selesai (minimal 40–42 hari), saat lochea telah berhenti total dan luka jalan lahir sembuh sempurna. Jangan lupa telah memilih alat kontrasepsi yang sesuai untuk mencegah kehamilan yang terlalu rapat.
+            </div>
+</div>
+<!-- Accordion Item 4 -->
+<div class="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+<button aria-expanded="false" class="faq-toggle w-full px-5 py-4 text-left font-heading font-semibold text-sm text-slate-800 flex justify-between items-center hover:bg-slate-50 transition" type="button">
+<span>Apa yang harus dilakukan jika ASI belum keluar di hari pertama?</span>
+<span class="text-brand-orange font-bold text-lg transform transition-transform duration-200">+</span>
+</button>
+<div class="faq-content hidden px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Tetap tenang dan jangan panik. Lambung bayi baru lahir hari ke-1 hanya berukuran sebesar biji kelereng (5–7 ml). Terus susui sesering mungkin (skin-to-skin) untuk merangsang hormon prolaktin. Lakukan pijat oksitosin di punggung bersama suami untuk memicu aliran ASI.
+            </div>
+</div>
+</div>
+</section>
+<!-- END: FAQ Accordion Section -->
+</main>
+<!-- BEGIN: Footer Section -->
+<footer class="bg-slate-900 text-slate-300 px-6 md:px-12 py-12 border-t border-slate-800" data-purpose="page-footer">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+<!-- Brand Info -->
+<div class="md:col-span-4">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-8 h-8 rounded-xl bg-brand-orange flex items-center justify-center text-white font-heading font-bold text-lg">
+              N
+            </div>
+<span class="text-2xl font-bold font-heading text-white">NIFASIA</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Platform edukasi dan pendampingan terpercaya bagi ibu, bayi baru lahir, dan keluarga di 42 hari masa nifas.
+          </p>
+<div class="inline-block text-[11px] text-amber-300 bg-amber-950/60 border border-amber-800 px-3 py-1.5 rounded-lg">
+            Sahabat Ibu Indonesia Sehat
+          </div>
+</div>
+<!-- Quick Links -->
+<div class="md:col-span-2">
+<h5 class="font-heading font-bold text-white text-sm mb-3">Navigasi</h5>
+<ul class="text-xs space-y-2">
+<li><a class="hover:text-brand-orange transition" href="#nifas-academy">Nifas Academy</a></li>
+<li><a class="hover:text-brand-orange transition" href="#video-hub">Video Hub</a></li>
+<li><a class="hover:text-brand-orange transition" href="#asi-corner">ASI Corner</a></li>
+<li><a class="hover:text-brand-orange transition" href="#oksitosin">Pijat Oksitosin</a></li>
+</ul>
+</div>
+<!-- Emergency & Support -->
+<div class="md:col-span-3">
+<h5 class="font-heading font-bold text-white text-sm mb-3">Layanan Siaga</h5>
+<ul class="text-xs space-y-2">
+<li><a class="text-red-400 font-semibold hover:underline" href="#tanda-bahaya">Tanda Bahaya Nifas</a></li>
+<li><a class="hover:text-brand-orange transition" href="#mental-health">Skrining Baby Blues</a></li>
+<li><span class="text-slate-400">Halo Kemenkes: 1500-567</span></li>
+<li><span class="text-slate-400">Emergency Call: 119</span></li>
+</ul>
+</div>
+<!-- Medical Disclaimer -->
+<div class="md:col-span-3">
+<h5 class="font-heading font-bold text-white text-sm mb-3">Disclaimer Medis</h5>
+<p class="text-[11px] text-slate-400 leading-relaxed bg-slate-800/60 p-3 rounded-2xl border border-slate-700/60">
+            Seluruh konten di NIFASIA ditujukan semata-mata untuk tujuan edukasi kesehatan. Informasi ini tidak menggantikan diagnosis, konsultasi, ataupun perawatan medis langsung oleh dokter spesialis obstetri ginekologi atau bidan berwenang.
+          </p>
+</div>
+</div>
+<!-- Copyright -->
+<div class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+        © <span id="current-year"></span> NIFASIA (Edukasi &amp; Pendampingan Ibu Nifas). Seluruh Hak Cipta Dilindungi.
+      </div>
+</footer>
+<!-- END: Footer Section -->
+</div>
+<!-- END: Central Layout Wrapper -->
+<!-- BEGIN: Interactive Vanilla JavaScript -->
+<script data-purpose="interactive-components">
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileNav.classList.toggle('hidden');
+        });
+
+        // Close menu on click of navigation links
+        mobileNav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.add('hidden');
+          });
+        });
+      }
+
+      // 2. Video Gallery Filter
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const videoItems = document.querySelectorAll('.video-item');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active styles
+          filterButtons.forEach(b => {
+            b.classList.remove('bg-brand-orange', 'text-white', 'active');
+            b.classList.add('bg-white', 'text-slate-600');
+          });
+
+          // Activate clicked button
+          btn.classList.add('bg-brand-orange', 'text-white', 'active');
+          btn.classList.remove('bg-white', 'text-slate-600');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          videoItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            if (filterValue === 'all' || category === filterValue) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 3. FAQ Accordion Functionality
+      const faqToggles = document.querySelectorAll('.faq-toggle');
+
+      faqToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const content = toggle.nextElementSibling;
+          const icon = toggle.querySelector('span:last-child');
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+          // Close other accordion elements
+          faqToggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              otherToggle.setAttribute('aria-expanded', 'false');
+              otherToggle.nextElementSibling.classList.add('hidden');
+              otherToggle.querySelector('span:last-child').textContent = '+';
+            }
+          });
+
+          // Toggle current
+          if (isExpanded) {
+            toggle.setAttribute('aria-expanded', 'false');
+            content.classList.add('hidden');
+            icon.textContent = '+';
+          } else {
+            toggle.setAttribute('aria-expanded', 'true');
+            content.classList.remove('hidden');
+            icon.textContent = '−';
+          }
+        });
+      });
+
+      // 4. Mini EPDS Self-Screening Form Submission
+      const epdsForm = document.getElementById('epds-form');
+      const quizResult = document.getElementById('quiz-result');
+
+      if (epdsForm && quizResult) {
+        epdsForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const formData = new FormData(epdsForm);
+          let totalScore = 0;
+
+          for (let val of formData.values()) {
+            totalScore += parseInt(val, 10);
+          }
+
+          quizResult.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-800', 'bg-amber-50', 'border-amber-200', 'text-amber-800');
+
+          if (totalScore <= 2) {
+            quizResult.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+            quizResult.innerHTML = `
+              <strong>Skor Anda: ${totalScore} (Kondisi Adaptif Normal)</strong><br>
+              Perasaan Anda saat ini masih dalam batas transisi yang wajar. Tetap jaga istirahat di saat bayi tidur, penuhi nutrisi, dan komunikasikan kebutuhan Anda kepada pasangan.
+            `;
+          } else {
+            quizResult.classList.add('bg-amber-50', 'border-amber-200', 'text-amber-800');
+            quizResult.innerHTML = `
+              <strong>Skor Anda: ${totalScore} (Perlu Perhatian & Dukungan Tambahan)</strong><br>
+              Anda mungkin sedang mengalami kelelahan emosional atau gejala Baby Blues yang menekan. Jangan ragu membagi tugas rumah dengan keluarga, istirahat cukup, dan pertimbangkan untuk berkonsultasi dengan bidan atau psikolog jika perasaan ini berlanjut lebih dari 2 minggu.
+            `;
+          }
+        });
+      }
+
+      // 5. Dynamic Current Year
+      const yearEl = document.getElementById('current-year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    });
+  </script>
+<!-- END: Interactive Vanilla JavaScript -->
+
+
+<!-- BEGIN: Materi Script -->
+<script data-purpose="materi">
+(function () {
+  const MATERI = [{"id":"m1","title":"Perawatan Diri Selama Masa Nifas","sub":"Panduan Ibu untuk Pulih Sehat dan Nyaman Setelah Melahirkan","sec":"nifas-academy","secName":"Nifas Academy","icon":"🌷","bg":"#FDE7EF","ac":"#E0568A","sum":"Kebersihan diri, perineum, nutrisi, istirahat, payudara, dan kesehatan emosional selama 6 minggu pemulihan.","min":3,"b":[{"t":"h3","x":"Apa Itu Masa Nifas?"},{"t":"p","x":"Masa nifas adalah masa pemulihan tubuh ibu setelah melahirkan, yang umumnya berlangsung sekitar 6 minggu atau 42 hari. Selama masa ini, tubuh mengalami berbagai perubahan, termasuk keluarnya darah nifas, pemulihan organ reproduksi, dan penyesuaian dalam menyusui serta merawat bayi."},{"t":"p","x":"Perawatan yang tepat membantu ibu menjalani masa pemulihan dengan lebih nyaman dan mengenali masalah kesehatan sejak dini."},{"t":"h3","x":"Bagaimana Cara Merawat Diri Selama Masa Nifas?"},{"t":"h4","x":"Menjaga Kebersihan Diri"},{"t":"ul","i":["Mandi secara teratur dan bersihkan tubuh dengan air bersih.","Cuci tangan menggunakan sabun sebelum menyusui, setelah dari toilet, dan sebelum merawat luka.","Ganti pembalut secara teratur atau setiap kali terasa penuh maupun kotor.","Bersihkan area kemaluan dari arah depan ke belakang setelah buang air.","Keringkan area kemaluan dengan lembut menggunakan bahan yang bersih."]},{"t":"h4","x":"Merawat Area Perineum"},{"t":"p","x":"Perineum adalah area antara vagina dan anus yang mungkin mengalami luka atau jahitan saat persalinan."},{"t":"ul","i":["Bersihkan area perineum menggunakan air bersih.","Keringkan dengan menepuk lembut, jangan menggosok luka.","Hindari penggunaan bahan atau ramuan yang belum terbukti aman pada luka.","Jika luka semakin nyeri, bengkak, mengeluarkan nanah, atau berbau tidak sedap, segera periksakan diri."]},{"t":"h4","x":"Memenuhi Kebutuhan Nutrisi"},{"t":"p","x":"Tubuh ibu membutuhkan zat gizi yang cukup untuk pemulihan dan mendukung proses menyusui."},{"t":"ul","i":["Konsumsi makanan bergizi seimbang, termasuk sumber karbohidrat, protein, sayur, dan buah.","Pilih sumber protein seperti telur, ikan, ayam, tahu, dan tempe.","Minum air putih secara cukup, terutama saat menyusui.","Konsumsi tablet tambah darah sesuai anjuran tenaga kesehatan."]},{"t":"h4","x":"Mencukupi Kebutuhan Istirahat"},{"t":"p","x":"Tubuh membutuhkan waktu untuk pulih setelah persalinan."},{"t":"ul","i":["Beristirahat ketika bayi tidur jika memungkinkan.","Mintalah bantuan pasangan atau keluarga untuk merawat bayi dan mengerjakan pekerjaan rumah.","Hindari aktivitas berat yang menimbulkan nyeri atau kelelahan berlebihan.","Tingkatkan aktivitas secara bertahap sesuai kondisi tubuh dan anjuran tenaga kesehatan."]},{"t":"h4","x":"Menjaga Kebersihan dan Kenyamanan Payudara"},{"t":"ul","i":["Cuci tangan sebelum menyusui atau memerah ASI.","Susui bayi sesuai kebutuhan dan perhatikan posisi serta pelekatan yang benar.","Hindari memijat payudara dengan keras.","Jika payudara terasa sangat nyeri, kemerahan, atau disertai demam, segera konsultasikan kepada tenaga kesehatan."]},{"t":"h4","x":"Menjaga Kesehatan Emosional"},{"t":"p","x":"Perubahan hormon, kurang tidur, dan tanggung jawab merawat bayi dapat memengaruhi perasaan ibu."},{"t":"ul","i":["Ceritakan perasaan kepada pasangan atau orang yang dipercaya.","Jangan ragu meminta bantuan saat merasa kewalahan.","Luangkan waktu untuk beristirahat dan melakukan aktivitas ringan yang menyenangkan.","Jika kesedihan atau kecemasan menetap, semakin berat, atau mengganggu aktivitas sehari-hari, konsultasikan kepada tenaga kesehatan."]},{"t":"h3","x":"Kapan Ibu Harus Segera Mencari Pertolongan?"},{"t":"lb","x":"Segera pergi ke fasilitas kesehatan jika ibu mengalami:"},{"t":"ul","i":["Perdarahan banyak atau tiba-tiba bertambah banyak.","Demam 38°C atau lebih.","Sakit kepala hebat, gangguan penglihatan, atau kejang.","Sesak napas atau nyeri dada.","Nyeri perut hebat atau nyeri yang semakin memburuk.","Luka persalinan yang semakin merah, bengkak, bernanah, atau berbau tidak sedap.","Pikiran untuk menyakiti diri sendiri atau bayi."]},{"t":"p","x":"Jangan menunggu jadwal kunjungan nifas apabila muncul tanda bahaya."},{"t":"h3","x":"Tips untuk Keluarga"},{"t":"p","x":"Dukungan keluarga sangat penting selama masa pemulihan ibu."},{"t":"ul","i":["Bantu menyiapkan makanan bergizi.","Berikan kesempatan kepada ibu untuk beristirahat.","Bantu merawat bayi dan melakukan pekerjaan rumah.","Dengarkan keluhan ibu tanpa menghakimi.","Dampingi ibu mencari pertolongan jika muncul tanda bahaya."]},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"Perawatan diri selama masa nifas meliputi menjaga kebersihan, memenuhi nutrisi, mencukupi istirahat, merawat area persalinan, menjaga kesehatan payudara, dan memperhatikan kondisi emosional. Jangan ragu meminta bantuan keluarga atau tenaga kesehatan jika mengalami keluhan."},{"t":"note","x":"Ingat, Bu! Merawat diri sendiri merupakan bagian penting dari merawat bayi. Ibu yang sehat dan mendapatkan dukungan akan lebih terbantu dalam menjalani masa pemulihan."}]},{"id":"m2","title":"Perawatan Luka Perineum","sub":"Panduan Merawat Luka Jahitan agar Pulih dengan Baik","sec":"nifas-academy","secName":"Nifas Academy","icon":"🩹","bg":"#FFF1D6","ac":"#D98A0B","sum":"Cara membersihkan dan merawat luka jahitan, mengenali tanda infeksi, dan kapan harus ke bidan.","min":3,"b":[{"t":"h3","x":"Apa Itu Luka Perineum?"},{"t":"p","x":"Luka perineum adalah luka pada area antara vagina dan anus yang dapat terjadi akibat robekan saat persalinan atau tindakan episiotomi (sayatan pada perineum untuk membantu proses persalinan)."},{"t":"p","x":"Luka ini membutuhkan perawatan yang tepat agar proses penyembuhan berjalan baik dan risiko infeksi dapat dikurangi."},{"t":"h3","x":"Bagaimana Cara Merawat Luka Perineum?"},{"t":"h4","x":"Cuci Tangan Sebelum dan Sesudah Merawat Luka"},{"t":"ul","i":["Cuci tangan menggunakan sabun dan air mengalir.","Pastikan tangan bersih sebelum menyentuh area perineum atau mengganti pembalut."]},{"t":"h4","x":"Bersihkan Area Perineum dengan Benar"},{"t":"ul","i":["Bersihkan area kemaluan menggunakan air bersih setelah buang air kecil atau buang air besar.","Bersihkan dari arah depan ke belakang agar kotoran dari anus tidak berpindah ke area vagina.","Hindari menggosok luka atau memasukkan sabun ke dalam vagina.","Keringkan dengan menepuk lembut menggunakan tisu atau handuk bersih."]},{"t":"h4","x":"Ganti Pembalut Secara Teratur"},{"t":"ul","i":["Ganti pembalut ketika terasa penuh atau kotor.","Cuci tangan sebelum dan sesudah mengganti pembalut.","Jangan menggunakan pembalut yang lembap atau kotor terlalu lama."]},{"t":"h4","x":"Jaga Area Luka Tetap Bersih dan Kering"},{"t":"ul","i":["Gunakan pakaian dalam yang bersih dan nyaman.","Hindari penggunaan bedak, ramuan, atau bahan lain pada luka tanpa anjuran tenaga kesehatan.","Jangan mengoleskan antiseptik atau obat pada luka kecuali dianjurkan oleh tenaga kesehatan."]},{"t":"h4","x":"Kurangi Ketidaknyamanan"},{"t":"ul","i":["Beristirahat dan ubah posisi secara perlahan.","Hindari duduk atau berdiri terlalu lama jika menambah rasa nyeri.","Minum obat pereda nyeri sesuai resep atau anjuran tenaga kesehatan.","Cegah sembelit dengan mengonsumsi makanan berserat dan cukup minum."]},{"t":"h3","x":"Apa yang Normal Selama Penyembuhan?"},{"t":"lb","x":"Pada masa awal setelah persalinan, ibu mungkin merasakan:"},{"t":"ul","i":["Nyeri atau rasa tidak nyaman ringan di sekitar luka.","Sedikit bengkak atau memar.","Rasa tertarik di area jahitan ketika bergerak atau duduk."]},{"t":"p","x":"Keluhan seharusnya berangsur membaik. Jika nyeri semakin berat atau muncul keluhan baru, ibu perlu diperiksa oleh tenaga kesehatan."},{"t":"h3","x":"Apa Tanda Infeksi pada Luka Perineum?"},{"t":"lb","x":"Segera periksakan diri jika ditemukan:"},{"t":"ul","i":["Nyeri yang semakin berat.","Kemerahan atau pembengkakan yang bertambah.","Nanah atau cairan berbau tidak sedap dari luka.","Luka terbuka atau jahitan terlepas.","Demam 38°C atau lebih.","Tubuh terasa sangat lemah atau tidak enak badan."]},{"t":"p","x":"Jika mengalami perdarahan banyak, pingsan, atau kondisi memburuk dengan cepat, segera cari pertolongan darurat."},{"t":"h3","x":"Tips agar Penyembuhan Lebih Optimal"},{"t":"ul","i":["Konsumsi makanan bergizi, terutama sumber protein.","Minum air putih yang cukup.","Istirahat sesuai kebutuhan tubuh.","Jaga kebersihan area perineum.","Hindari aktivitas yang menimbulkan nyeri berlebihan.","Hadiri kunjungan nifas sesuai jadwal.","Jangan menunda pemeriksaan jika luka terasa semakin sakit atau menunjukkan tanda infeksi."]},{"t":"h3","x":"Kapan Harus Berkonsultasi dengan Bidan?"},{"t":"p","x":"Hubungi bidan atau tenaga kesehatan jika ibu merasa khawatir terhadap kondisi luka, nyeri tidak membaik, kesulitan buang air kecil, atau mengalami tanda infeksi."},{"t":"p","x":"Ibu tidak perlu menunggu jadwal kontrol apabila terdapat tanda bahaya."},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"Perawatan luka perineum dilakukan dengan menjaga kebersihan, mengganti pembalut secara teratur, menghindari bahan yang tidak dianjurkan, memenuhi nutrisi, dan beristirahat dengan cukup."},{"t":"note","x":"Ingat, Bu! Luka yang semakin nyeri, bernanah, berbau tidak sedap, atau disertai demam perlu segera diperiksa oleh tenaga kesehatan."}]},{"id":"m3","title":"Nutrisi dan Kebutuhan Istirahat Ibu Nifas","sub":"Penuhi Nutrisi, Cukupi Istirahat, Dukung Pemulihan Ibu","sec":"nifas-academy","secName":"Nifas Academy","icon":"🥗","bg":"#E4F6EA","ac":"#2F9E5B","sum":"Menu bergizi seimbang, cairan, tablet tambah darah, dan tips istirahat saat merawat bayi.","min":3,"b":[{"t":"h3","x":"Mengapa Nutrisi dan Istirahat Penting?"},{"t":"p","x":"Setelah melahirkan, tubuh ibu membutuhkan energi dan zat gizi untuk membantu proses pemulihan, memperbaiki jaringan tubuh, serta mendukung produksi ASI."},{"t":"p","x":"Istirahat yang cukup juga membantu ibu mengurangi kelelahan dan beradaptasi dengan perubahan aktivitas setelah kelahiran bayi."},{"t":"h3","x":"Kebutuhan Nutrisi Ibu Nifas"},{"t":"h4","x":"Konsumsi Makanan Bergizi Seimbang"},{"t":"lb","x":"Usahakan mengonsumsi makanan yang beragam setiap hari, meliputi:"},{"t":"ul","i":["Karbohidrat: nasi, kentang, jagung, atau roti sebagai sumber energi.","Protein: telur, ikan, ayam, daging, tahu, dan tempe untuk membantu perbaikan jaringan tubuh.","Sayur dan buah: sebagai sumber vitamin, mineral, dan serat.","Lemak sehat: ikan, kacang-kacangan, dan sumber lemak sehat lainnya.","Sumber kalsium: susu, yoghurt, atau pangan lain yang mengandung kalsium."]},{"t":"p","x":"Tidak ada satu jenis makanan tertentu yang wajib dikonsumsi agar ASI menjadi banyak."},{"t":"p","x":"Utamakan pola makan bergizi seimbang sesuai kebutuhan ibu."},{"t":"h4","x":"Penuhi Kebutuhan Cairan"},{"t":"ul","i":["Minum air putih secara teratur sepanjang hari.","Sediakan air minum di dekat tempat menyusui.","Minum sesuai rasa haus dan perhatikan kecukupan cairan, terutama ketika menyusui.","Jangan sengaja membatasi minum untuk mengurangi produksi urine atau karena khawatir ASI menjadi encer."]},{"t":"h4","x":"Konsumsi Tablet Tambah Darah Sesuai Anjuran"},{"t":"p","x":"Ibu nifas dapat membutuhkan suplementasi zat besi untuk membantu memenuhi kebutuhan zat besi, terutama setelah kehilangan darah saat persalinan."},{"t":"p","x":"Konsumsi tablet tambah darah sesuai anjuran tenaga kesehatan. Jangan menambah atau menghentikan suplemen tanpa berkonsultasi apabila suplemen tersebut diresepkan."},{"t":"h4","x":"Hindari Pantangan Makanan yang Tidak Berdasar"},{"t":"p","x":"Ibu nifas umumnya tidak perlu menghindari berbagai jenis makanan bergizi tanpa alasan medis."},{"t":"p","x":"Pilih makanan yang bersih, matang, dan bervariasi. Jika ibu memiliki alergi, kondisi medis tertentu, atau pantangan berdasarkan anjuran tenaga kesehatan, sesuaikan pilihan makanannya."},{"t":"h3","x":"Bagaimana Cara Mendapatkan Istirahat yang Cukup?"},{"t":"h4","x":"Istirahat Saat Ada Kesempatan"},{"t":"p","x":"Ibu dapat mencoba beristirahat ketika bayi tidur atau ketika ada anggota keluarga yang membantu menjaga bayi."},{"t":"h4","x":"Minta Bantuan Keluarga"},{"t":"p","x":"Pasangan atau keluarga dapat membantu menyiapkan makanan, membersihkan rumah, dan merawat bayi agar ibu memiliki waktu untuk beristirahat."},{"t":"h4","x":"Atur Aktivitas Secara Bertahap"},{"t":"ul","i":["Mulai aktivitas ringan sesuai kondisi tubuh.","Hindari pekerjaan berat jika menimbulkan nyeri atau kelelahan berlebihan.","Berikan waktu untuk pemulihan dan jangan memaksakan diri.","Ikuti anjuran tenaga kesehatan terkait aktivitas setelah persalinan, terutama jika menjalani operasi sesar atau mengalami komplikasi."]},{"t":"h4","x":"Ciptakan Lingkungan Istirahat yang Nyaman"},{"t":"p","x":"Usahakan tempat tidur bersih dan nyaman, kurangi gangguan yang tidak diperlukan, serta minta bantuan keluarga untuk menciptakan suasana yang mendukung istirahat."},{"t":"h3","x":"Tips Praktis untuk Ibu Nifas"},{"t":"ul","i":["Siapkan makanan sederhana yang bergizi agar mudah dikonsumsi.","Makan secara teratur sesuai kebutuhan dan selera.","Letakkan air minum di dekat tempat istirahat atau menyusui.","Bagikan tugas merawat bayi dengan pasangan atau keluarga.","Jangan ragu meminta bantuan jika merasa sangat kelelahan.","Hadiri kunjungan nifas sesuai jadwal untuk memantau pemulihan."]},{"t":"h3","x":"Kapan Harus Berkonsultasi dengan Tenaga Kesehatan?"},{"t":"lb","x":"Konsultasikan kondisi ibu jika mengalami:"},{"t":"ul","i":["Kelelahan berat yang tidak membaik dengan istirahat.","Nafsu makan yang sangat menurun atau kesulitan makan dan minum.","Pusing berulang, lemas berlebihan, atau pucat.","Kesulitan menyusui atau kekhawatiran tentang produksi ASI.","Keluhan lain yang mengganggu pemulihan."]},{"t":"p","x":"Jika disertai sesak napas, nyeri dada, pingsan, atau perdarahan banyak, segera cari pertolongan medis."},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"Nutrisi seimbang, cairan yang cukup, suplementasi sesuai anjuran, dan istirahat yang memadai membantu mendukung pemulihan ibu setelah persalinan."},{"t":"note","x":"Ingat, Bu! Ibu tidak harus melakukan semuanya sendiri. Dukungan keluarga berperan penting agar ibu dapat makan dengan baik, beristirahat, dan merawat bayi dengan lebih nyaman."}]},{"id":"m15","title":"Perawatan Bayi Baru Lahir","sub":"","sec":"nifas-academy","secName":"Nifas Academy","icon":"👶","bg":"#E3F0FF","ac":"#3B82C4","sum":"Memandikan bayi, merawat tali pusat, tidur aman, tanda bahaya, dan jadwal pemeriksaan.","min":4,"b":[{"t":"h3","x":"Mengapa Perawatan Bayi Baru Lahir Penting?"},{"t":"p","x":"Bayi baru lahir membutuhkan perawatan yang tepat untuk mendukung pertumbuhan, menjaga kebersihan, dan membantu mencegah infeksi. Ibu dan keluarga perlu mengetahui cara merawat bayi serta mengenali tanda bahaya yang membutuhkan pertolongan tenaga kesehatan."},{"t":"h3","x":"Cara Merawat Bayi Baru Lahir"},{"t":"h4","x":"Menjaga Kebersihan Bayi"},{"t":"p","x":"●​ Cuci tangan sebelum dan sesudah merawat bayi.​"},{"t":"p","x":"●​ Mandikan bayi ketika kondisinya stabil dan suhu tubuhnya terjaga.​"},{"t":"p","x":"●​ Gunakan air hangat suam-suam kuku dan hindari meninggalkan bayi sendirian saat mandi.​"},{"t":"p","x":"●​ Bersihkan area popok dengan lembut dan ganti popok ketika basah atau kotor.​"},{"t":"p","x":"●​ Hindari penggunaan bedak atau produk yang dapat mengiritasi kulit bayi.​"},{"t":"h4","x":"Merawat Tali Pusat"},{"t":"p","x":"●​ Cuci tangan sebelum menyentuh tali pusat.​"},{"t":"p","x":"●​ Jaga tali pusat tetap bersih dan kering.​"},{"t":"p","x":"●​ Lipat bagian depan popok agar tidak menutupi tali pusat.​"},{"t":"p","x":"●​ Jangan mengoleskan minyak, bedak, ramuan, atau bahan lain tanpa anjuran tenaga kesehatan.​"},{"t":"p","x":"●​ Biarkan tali pusat lepas dengan sendirinya dan jangan menariknya.​"},{"t":"p","x":"Jika tali pusat mengeluarkan nanah, berbau tidak sedap, kulit di sekitarnya memerah, atau bayi mengalami demam, segera bawa ke fasilitas kesehatan."},{"t":"h4","x":"Memberikan ASI"},{"t":"p","x":"●​ Berikan ASI eksklusif sejak lahir hingga bayi berusia 6 bulan.​"},{"t":"p","x":"●​ Susui bayi sesuai tanda lapar, termasuk pada malam hari.​"},{"t":"p","x":"●​ Pastikan posisi dan pelekatan menyusui benar.​"},{"t":"p","x":"●​ Pantau frekuensi buang air kecil, kondisi bayi, dan pertambahan berat badannya.​"},{"t":"p","x":"Jika bayi tidak mampu menyusu atau tampak sangat lemas, segera cari pertolongan medis."},{"t":"h4","x":"Menjaga Kehangatan Bayi"},{"t":"p","x":"●​ Keringkan bayi setelah mandi.​"},{"t":"p","x":"●​ Kenakan pakaian sesuai suhu lingkungan.​"},{"t":"p","x":"●​ Lakukan kontak kulit ke kulit dengan ibu jika memungkinkan dan aman.​"},{"t":"p","x":"●​ Hindari membungkus bayi terlalu tebal hingga kepanasan.​"},{"t":"h4","x":"Menjaga Keamanan Tidur Bayi"},{"t":"p","x":"●​ Baringkan bayi dalam posisi telentang setiap kali tidur.​"},{"t":"p","x":"●​ Gunakan permukaan tidur yang rata, kokoh, dan tidak miring.​"},{"t":"p","x":"●​ Jauhkan bantal, selimut longgar, boneka, serta benda lunak dari area tidur bayi.​"},{"t":"p","x":"●​ Tempatkan bayi di tempat tidur terpisah yang aman, tetapi berada di kamar yang sama dengan orang tua jika memungkinkan.​"},{"t":"p","x":"●​ Hindari tidur bersama bayi di sofa atau kursi.​"},{"t":"h3","x":"Perawatan Mata dan Kulit Bayi"},{"t":"p","x":"●​ Bersihkan kotoran di sekitar mata dengan kasa bersih yang dibasahi air bersih, menggunakan bagian kasa yang berbeda untuk setiap mata.​"},{"t":"p","x":"●​ Hindari memberikan obat tetes mata tanpa petunjuk tenaga kesehatan.​"},{"t":"p","x":"●​ Jaga kulit bayi tetap bersih dan kering.​"},{"t":"p","x":"●​ Jangan memencet bintik atau ruam pada kulit bayi.​"},{"t":"p","x":"●​ Konsultasikan jika muncul ruam yang meluas, lepuh, nanah, atau perubahan warna kulit yang tidak biasa.​"},{"t":"h3","x":"Mengenali Tanda Bahaya pada Bayi Baru Lahir"},{"t":"p","x":"Ibu dan keluarga perlu segera mencari pertolongan medis jika bayi mengalami:"},{"t":"p","x":"●​ Tidak mau menyusu atau tidak mampu menyusu.​"},{"t":"p","x":"●​ Tubuh sangat lemas atau sulit dibangunkan.​"},{"t":"p","x":"●​ Napas cepat, sulit bernapas, atau tarikan dinding dada.​"},{"t":"p","x":"●​ Demam dengan suhu 38°C atau lebih, atau suhu tubuh terlalu rendah.​"},{"t":"p","x":"●​ Kejang.​"},{"t":"p","x":"●​ Kulit atau bagian putih mata tampak kuning dalam 24 jam pertama, atau warna kuning semakin meluas.​"},{"t":"p","x":"●​ Muntah berwarna hijau.​"},{"t":"p","x":"●​ Tali pusat bernanah atau kemerahan yang meluas ke kulit sekitarnya.​"},{"t":"note","x":"Penting: Bayi baru lahir dapat mengalami perburukan kondisi dengan cepat. Jangan menunda pemeriksaan jika muncul tanda bahaya."},{"t":"h3","x":"Jadwal Pemeriksaan Bayi"},{"t":"p","x":"Pemeriksaan bayi baru lahir penting untuk memantau kondisi umum, berat badan, pemberian ASI, dan pertumbuhan bayi."},{"t":"lb","x":"Ibu dianjurkan:"},{"t":"p","x":"●​ Mengikuti jadwal kunjungan neonatal yang ditetapkan tenaga kesehatan.​"},{"t":"p","x":"●​ Memastikan bayi mendapatkan pelayanan pencegahan dan imunisasi sesuai jadwal nasional.​"},{"t":"p","x":"●​ Berkonsultasi jika memiliki pertanyaan tentang menyusui, perawatan tali pusat, atau kondisi bayi.​"},{"t":"p","x":"●​ Membawa buku KIA saat melakukan pemeriksaan.​"},{"t":"h3","x":"Peran Keluarga dalam Perawatan Bayi"},{"t":"lb","x":"Keluarga dapat membantu ibu dengan cara:"},{"t":"p","x":"●​ Membantu mengganti popok dan menenangkan bayi.​"},{"t":"p","x":"●​ Mendukung pemberian ASI.​"},{"t":"p","x":"●​ Membantu pekerjaan rumah agar ibu dapat beristirahat.​"},{"t":"p","x":"●​ Mempelajari tanda bahaya pada bayi.​"},{"t":"p","x":"●​ Mendampingi ibu saat membawa bayi ke fasilitas kesehatan.​"},{"t":"h3","x":"Pesan untuk Ibu"},{"t":"p","x":"Merawat bayi baru lahir membutuhkan proses belajar dan dukungan. Ibu tidak harus melakukan semuanya sendirian. Jangan ragu meminta bantuan bidan jika belum yakin dengan cara merawat bayi atau menemukan kondisi yang mengkhawatirkan."}]},{"id":"m6","title":"Panduan Posisi dan Pelekatan Menyusui","sub":"Menyusui Nyaman, Bayi Melekat dengan Tepat","sec":"asi-corner","secName":"ASI Corner","icon":"🤱","bg":"#FDE7EF","ac":"#E0568A","sum":"Posisi cradle, cross-cradle, football, berbaring miring, serta langkah pelekatan yang tepat.","min":4,"b":[{"t":"h3","x":"Apa Itu Posisi dan Pelekatan Menyusui?"},{"t":"p","x":"Posisi menyusui adalah cara ibu memegang dan menempatkan bayi saat menyusu."},{"t":"p","x":"Pelekatan menyusui adalah cara bayi memasukkan puting dan sebagian besar areola (area berwarna lebih gelap di sekitar puting) ke dalam mulutnya."},{"t":"p","x":"Posisi dan pelekatan yang tepat membantu bayi menyusu secara efektif serta mengurangi risiko nyeri dan lecet pada puting ibu."},{"t":"h3","x":"Bagaimana Posisi Menyusui yang Benar?"},{"t":"p","x":"Sebelum menyusui, pilih posisi yang nyaman bagi ibu dan bayi."},{"t":"h4","x":"Posisi Cradle Hold (Gendongan Klasik)"},{"t":"ul","i":["Kepala bayi berada pada lipatan siku ibu.","Tubuh bayi menghadap tubuh ibu.","Kepala dan tubuh bayi berada dalam satu garis lurus.","Dekatkan bayi ke payudara tanpa mendorong bagian belakang kepalanya."]},{"t":"h4","x":"Posisi Cross-Cradle Hold (Gendongan Silang)"},{"t":"ul","i":["Pegang bayi menggunakan lengan yang berlawanan dengan payudara yang akan disusukan.","Topang leher dan bahu bayi dengan tangan.","Gunakan tangan lainnya untuk membantu menopang payudara jika diperlukan.","Posisi ini membantu ibu mengarahkan bayi saat belajar melekat."]},{"t":"h4","x":"Posisi Football Hold (Gendongan Bawah Lengan)"},{"t":"ul","i":["Letakkan tubuh bayi di samping tubuh ibu, di bawah lengan.","Topang bahu dan leher bayi dengan tangan.","Arahkan kaki bayi ke belakang tubuh ibu.","Posisi ini dapat membantu sebagian ibu, termasuk ibu setelah operasi sesar, agar tekanan pada perut berkurang."]},{"t":"h4","x":"Posisi Berbaring Miring (Side-Lying)"},{"t":"ul","i":["Ibu berbaring miring dengan tubuh bayi menghadap ibu.","Pastikan kepala dan tubuh bayi sejajar.","Dekatkan bayi ke payudara dan bantu pelekatan.","Setelah menyusui, tempatkan bayi tidur telentang di permukaan tidur yang datar, kokoh, dan aman."]},{"t":"note","x":"Penting: Apa pun posisi yang dipilih, hidung bayi tetap terbuka, leher tidak tertekuk, dan tubuh bayi berada dekat dengan tubuh ibu."},{"t":"h3","x":"Bagaimana Cara Pelekatan yang Tepat?"},{"t":"p","x":"Ikuti langkah-langkah berikut."},{"t":"h4","x":"Langkah 1 — Posisikan Bayi dengan Benar"},{"t":"p","x":"Dekatkan tubuh bayi ke ibu. Pastikan telinga, bahu, dan pinggul bayi berada dalam satu garis lurus."},{"t":"h4","x":"Langkah 2 — Sejajarkan Hidung Bayi dengan Puting"},{"t":"p","x":"Posisikan hidung bayi berhadapan dengan puting agar bayi dapat membuka mulut lebar ketika mulai menyusu."},{"t":"h4","x":"Langkah 3 — Tunggu Mulut Bayi Terbuka Lebar"},{"t":"p","x":"Sentuhkan puting secara lembut pada bibir atas bayi untuk merangsang bayi membuka mulut."},{"t":"h4","x":"Langkah 4 — Dekatkan Bayi ke Payudara"},{"t":"p","x":"Saat mulut bayi terbuka lebar, dekatkan bayi ke payudara dengan dagu menyentuh payudara terlebih dahulu. Biarkan bayi mengambil puting dan sebagian besar areola ke dalam mulutnya."},{"t":"h4","x":"Langkah 5 — Periksa Kenyamanan dan Pelekatan"},{"t":"p","x":"Pastikan bayi dapat mengisap dengan efektif dan ibu tidak mengalami nyeri yang menetap."},{"t":"p","x":"Jika terasa sakit atau pelekatan tampak kurang tepat, lepaskan isapan secara lembut dengan memasukkan jari bersih ke sudut mulut bayi, kemudian coba kembali."},{"t":"h3","x":"Apa Tanda Pelekatan Sudah Baik?"},{"t":"lb","x":"Tanda-tanda yang dapat diperhatikan antara lain:"},{"t":"ul","i":["Mulut bayi terbuka lebar.","Dagu bayi menyentuh payudara.","Bibir bayi terbuka keluar, terutama bibir bawah.","Sebagian besar areola masuk ke dalam mulut, umumnya lebih banyak bagian areola terlihat di atas bibir bayi daripada di bawah.","Ibu merasa nyaman setelah pelekatan terbentuk.","Isapan bayi teratur dan terdengar atau terlihat gerakan menelan."]},{"t":"p","x":"Bayi yang menyusu efektif biasanya tampak puas setelah menyusu dan menunjukkan pertambahan berat badan yang sesuai."},{"t":"h3","x":"Apa Tanda Pelekatan Kurang Tepat?"},{"t":"lb","x":"Perhatikan tanda-tanda berikut:"},{"t":"ul","i":["Ibu merasakan nyeri yang menetap selama menyusui.","Puting lecet, pecah-pecah, atau tampak terjepit setelah menyusui.","Bayi hanya mengisap puting dengan mulut kurang terbuka.","Terdengar bunyi mengecap berulang saat menyusu.","Bayi sering terlepas dari payudara atau tampak kesulitan mengisap.","Bayi tidak menunjukkan tanda mendapatkan ASI yang cukup."]},{"t":"p","x":"Jika masalah terus berulang, mintalah bidan atau konselor laktasi menilai posisi dan pelekatan secara langsung."},{"t":"h3","x":"Tips agar Menyusui Lebih Nyaman"},{"t":"ul","i":["Pilih posisi yang nyaman dan tidak menimbulkan ketegangan pada punggung atau bahu.","Gunakan bantal untuk menopang lengan jika diperlukan.","Dekatkan bayi ke payudara, bukan membungkukkan tubuh ibu ke arah bayi.","Biarkan bayi menyusu sesuai kebutuhan.","Jangan memaksakan bayi melekat jika mulutnya belum terbuka lebar.","Minta bantuan bidan jika bayi kesulitan melekat atau ibu mengalami nyeri berulang."]},{"t":"h3","x":"Kapan Harus Berkonsultasi?"},{"t":"lb","x":"Hubungi bidan atau konselor laktasi jika:"},{"t":"ul","i":["Puting terus-menerus nyeri atau mengalami luka.","Bayi kesulitan melekat atau mengisap.","Bayi tampak sangat mengantuk dan sulit dibangunkan untuk menyusu.","Buang air kecil bayi lebih sedikit daripada yang diharapkan sesuai usianya.","Berat badan bayi tidak bertambah sesuai harapan."]},{"t":"p","x":"Jika bayi sulit dibangunkan, tampak sangat lemah, atau menunjukkan tanda dehidrasi, segera cari pertolongan medis."},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"Posisi dan pelekatan yang tepat membantu ibu menyusui dengan lebih nyaman dan membantu bayi memperoleh ASI secara efektif."},{"t":"note","x":"Ingat, Bu! Menyusui adalah proses belajar bagi ibu dan bayi. Jika mengalami kesulitan, jangan ragu meminta bantuan bidan atau konselor laktasi."}]},{"id":"m7","title":"Mengenal dan Menerapkan ASI Eksklusif","sub":"Berikan Awal Kehidupan Terbaik untuk Si Kecil","sec":"asi-corner","secName":"ASI Corner","icon":"🍼","bg":"#E3F0FF","ac":"#3B82C4","sum":"Pengertian, manfaat, dan cara menerapkan ASI eksklusif sejak lahir hingga 6 bulan.","min":4,"b":[{"t":"h3","x":"Apa Itu ASI Eksklusif?"},{"t":"p","x":"ASI eksklusif adalah pemberian air susu ibu (ASI) kepada bayi sejak lahir hingga usia 6 bulan tanpa tambahan makanan atau minuman lain, termasuk air putih, kecuali obat, vitamin, mineral, atau larutan rehidrasi oral yang diberikan sesuai indikasi."},{"t":"p","x":"ASI mengandung zat gizi dan komponen perlindungan yang dibutuhkan bayi untuk mendukung pertumbuhan dan perkembangannya."},{"t":"p","x":"Setelah bayi berusia 6 bulan, pemberian makanan pendamping ASI (MPASI) mulai dilakukan, sementara menyusui tetap dilanjutkan hingga usia 2 tahun atau lebih sesuai kebutuhan ibu dan anak."},{"t":"h3","x":"Apa Manfaat ASI Eksklusif?"},{"t":"h4","x":"Manfaat bagi Bayi"},{"t":"ul","i":["Menyediakan zat gizi yang sesuai dengan kebutuhan bayi pada awal kehidupannya.","Mengandung antibodi dan komponen imun yang membantu melindungi bayi dari infeksi.","Mendukung pertumbuhan dan perkembangan bayi.","Mudah dicerna oleh bayi.","Mendukung kedekatan emosional antara ibu dan bayi."]},{"t":"h4","x":"Manfaat bagi Ibu"},{"t":"ul","i":["Membantu proses pemulihan setelah persalinan melalui pelepasan hormon oksitosin saat menyusui.","Praktis karena ASI tersedia tanpa perlu menyiapkan susu formula.","Mendukung kedekatan emosional antara ibu dan bayi.","Dapat membantu menurunkan risiko beberapa penyakit pada ibu dalam jangka panjang."]},{"t":"h3","x":"Bagaimana Cara Menerapkan ASI Eksklusif?"},{"t":"h4","x":"Mulai Menyusui Sejak Dini"},{"t":"p","x":"Jika kondisi ibu dan bayi memungkinkan, lakukan inisiasi menyusu dini (IMD) setelah persalinan. Kontak kulit ke kulit membantu bayi beradaptasi dan mendukung proses menyusui."},{"t":"h4","x":"Susui Bayi Sesuai Kebutuhan"},{"t":"ul","i":["Berikan ASI ketika bayi menunjukkan tanda lapar.","Tanda lapar awal meliputi membuka mulut, mencari payudara, dan memasukkan tangan ke mulut.","Jangan selalu menunggu bayi menangis karena menangis merupakan tanda lapar yang lebih lanjut.","Bayi baru lahir umumnya menyusu sekitar 8–12 kali dalam 24 jam, tetapi frekuensinya dapat berbeda pada setiap bayi."]},{"t":"h4","x":"Pastikan Posisi dan Pelekatan Tepat"},{"t":"ul","i":["Posisikan tubuh bayi menghadap tubuh ibu.","Pastikan mulut bayi terbuka lebar ketika melekat.","Perhatikan kenyamanan ibu selama menyusui.","Mintalah bantuan bidan jika bayi kesulitan melekat atau ibu mengalami nyeri yang menetap."]},{"t":"h4","x":"Hindari Pemberian Makanan dan Minuman Tambahan Tanpa Indikasi"},{"t":"p","x":"Selama 6 bulan pertama, bayi umumnya tidak memerlukan air putih, madu, makanan, atau minuman lain selain ASI."},{"t":"p","x":"Jika terdapat indikasi medis untuk memberikan tambahan nutrisi, ikuti penilaian dan anjuran tenaga kesehatan."},{"t":"h4","x":"Jaga Kesehatan Ibu"},{"t":"ul","i":["Konsumsi makanan bergizi seimbang.","Minum sesuai kebutuhan.","Istirahat setiap ada kesempatan.","Mintalah dukungan keluarga agar proses menyusui lebih nyaman."]},{"t":"h3","x":"Bagaimana Mengetahui Bayi Mendapatkan ASI yang Cukup?"},{"t":"lb","x":"Beberapa tanda yang dapat diperhatikan:"},{"t":"ul","i":["Bayi menyusu secara aktif dan terdengar menelan.","Frekuensi buang air kecil meningkat sesuai usia bayi.","Setelah hari kelima kehidupan, bayi umumnya menghasilkan setidaknya 6 popok basah dalam 24 jam.","Bayi menunjukkan pertambahan berat badan yang sesuai.","Bayi tampak lebih tenang setelah sebagian besar sesi menyusui."]},{"t":"p","x":"Frekuensi buang air kecil, pola menyusu, dan pertambahan berat badan perlu dinilai bersama."},{"t":"p","x":"Jika ibu khawatir ASI tidak mencukupi, konsultasikan kepada bidan atau tenaga kesehatan."},{"t":"h3","x":"Bagaimana Jika Ibu Merasa ASI Belum Keluar atau Sedikit?"},{"t":"p","x":"Pada hari-hari pertama, kolostrum diproduksi dalam jumlah relatif sedikit, tetapi kaya akan zat gizi dan komponen perlindungan bagi bayi."},{"t":"lb","x":"Yang dapat dilakukan ibu:"},{"t":"ul","i":["Tetap sering menyusui sesuai kebutuhan bayi.","Periksa posisi dan pelekatan menyusui.","Lakukan kontak kulit ke kulit jika kondisi ibu dan bayi memungkinkan.","Jika bayi belum dapat menyusu langsung, minta bantuan tenaga kesehatan untuk memerah ASI.","Jangan langsung menyimpulkan ASI tidak cukup hanya berdasarkan sedikitnya ASI yang terlihat saat diperah."]},{"t":"p","x":"Jika bayi sulit menyusu, jarang buang air kecil, tampak lemah, atau berat badannya tidak bertambah sesuai harapan, segera konsultasikan kepada tenaga kesehatan."},{"t":"h3","x":"Peran Keluarga dalam Mendukung ASI Eksklusif"},{"t":"lb","x":"Pasangan dan keluarga dapat membantu dengan cara:"},{"t":"ul","i":["Mendukung ibu menyusui tanpa memberikan tekanan.","Membantu menyiapkan makanan dan minuman.","Membantu pekerjaan rumah dan perawatan bayi.","Memberikan kesempatan kepada ibu untuk beristirahat.","Mendampingi ibu berkonsultasi jika mengalami masalah menyusui."]},{"t":"h3","x":"Kapan Harus Berkonsultasi?"},{"t":"lb","x":"Hubungi bidan atau konselor laktasi jika:"},{"t":"ul","i":["Bayi terus mengalami kesulitan menyusu.","Ibu merasakan nyeri yang menetap saat menyusui.","Bayi menunjukkan tanda kekurangan asupan atau dehidrasi.","Berat badan bayi tidak bertambah sesuai harapan.","Ibu memiliki kondisi kesehatan atau mengonsumsi obat yang menimbulkan pertanyaan tentang keamanan menyusui."]},{"t":"p","x":"Segera cari pertolongan medis jika bayi sulit dibangunkan, tampak sangat lemah, atau mengalami kesulitan bernapas."},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"ASI eksklusif dianjurkan sejak lahir hingga usia 6 bulan. Penerapannya didukung oleh menyusui sesuai kebutuhan bayi, pelekatan yang tepat, pemantauan kecukupan ASI, dan dukungan keluarga."},{"t":"note","x":"Ingat, Bu! Setiap perjalanan menyusui memiliki tantangan yang berbeda. Jika mengalami kesulitan, mintalah bantuan tenaga kesehatan agar ibu dan bayi mendapatkan dukungan yang tepat."}]},{"id":"m8","title":"Cara Mengenali Kecukupan ASI","sub":"","sec":"asi-corner","secName":"ASI Corner","icon":"✅","bg":"#E4F6EA","ac":"#2F9E5B","sum":"Tanda bayi cukup ASI: pola menyusu, popok basah, berat badan, dan kapan perlu bantuan.","min":3,"b":[{"t":"h3","x":"Apa Itu Kecukupan ASI?"},{"t":"p","x":"Kecukupan ASI adalah kondisi ketika bayi mendapatkan ASI dalam jumlah yang sesuai dengan kebutuhannya untuk mendukung pertumbuhan dan perkembangannya. Ibu dapat mengenali kecukupan ASI dengan memperhatikan pola menyusu, jumlah urine, kondisi bayi, dan pertambahan berat badan."},{"t":"h3","x":"Tanda Bayi Mendapatkan ASI yang Cukup"},{"t":"lb","x":"Berikut beberapa tanda yang dapat diperhatikan ibu:"},{"t":"ul","i":["Bayi menyusu secara aktif. Bayi mengisap dengan ritme teratur dan terkadang terdengar suara menelan.","Bayi tampak lebih tenang setelah menyusu. Bayi umumnya tampak puas, meskipun terkadang masih ingin menyusu kembali.","Frekuensi buang air kecil sesuai usia. Setelah berusia 5 hari, bayi umumnya buang air kecil minimal 6 kali dalam 24 jam.","Berat badan bertambah. Pertambahan berat badan perlu dipantau secara berkala oleh tenaga kesehatan.","Bayi tampak aktif saat terjaga. Bayi merespons rangsangan dan tidak terus-menerus tampak lemas."]},{"t":"p","x":"Tanda-tanda tersebut perlu dinilai secara bersama-sama. Satu tanda saja belum cukup untuk memastikan kecukupan ASI."},{"t":"h3","x":"Seberapa Sering Bayi Perlu Menyusu?"},{"t":"p","x":"Bayi baru lahir umumnya menyusu sekitar 8–12 kali dalam 24 jam, tetapi frekuensinya dapat berbeda pada setiap bayi."},{"t":"lb","x":"Berikan ASI sesuai tanda lapar bayi, seperti:"},{"t":"ul","i":["Mulut membuka dan mencari puting.","Tangan masuk ke mulut.","Bayi mengecapkan bibir atau mengisap tangannya.","Bayi tampak gelisah."]},{"t":"p","x":"Tangisan merupakan tanda lapar yang lebih lanjut. Karena itu, ibu sebaiknya menawarkan ASI sebelum bayi menangis keras."},{"t":"h3","x":"Bagaimana Menilai Buang Air Kecil dan Besar Bayi?"},{"t":"p","x":"Jumlah popok basah dapat membantu ibu menilai asupan ASI."},{"t":"ul","i":["Pada hari-hari pertama, jumlah buang air kecil biasanya meningkat secara bertahap.","Mulai sekitar hari kelima, bayi umumnya memiliki minimal 6 popok basah dalam 24 jam.","Warna urine umumnya kuning pucat.","Frekuensi dan warna tinja berubah seiring bertambahnya usia bayi."]},{"t":"p","x":"Pada bayi yang lebih besar, terutama setelah usia sekitar 4–6 minggu, frekuensi buang air besar dapat berkurang meskipun ASI tetap cukup. Karena itu, penilaian perlu mempertimbangkan usia bayi, konsistensi tinja, kondisi umum, dan pertambahan berat badan."},{"t":"h3","x":"Tanda ASI Mungkin Belum Mencukupi"},{"t":"lb","x":"Ibu perlu memperhatikan beberapa kondisi berikut:"},{"t":"ul","i":["Bayi jarang buang air kecil atau jumlah popok basah berkurang.","Bayi sulit dibangunkan atau tampak sangat lemas.","Bayi terus-menerus sulit menyusu atau isapannya lemah.","Bayi tidak menunjukkan pertambahan berat badan yang sesuai.","Bayi tampak semakin kuning atau menunjukkan tanda kekurangan cairan."]},{"t":"p","x":"Jika bayi sulit dibangunkan, sangat lemas, tidak mampu menyusu, atau menunjukkan tanda dehidrasi, segera bawa ke fasilitas kesehatan. Jangan menunggu hingga jadwal kontrol berikutnya."},{"t":"h3","x":"Tips agar Pemberian ASI Berjalan Optimal"},{"t":"ol","i":["Susui bayi sesuai tanda lapar, termasuk pada malam hari.","Pastikan posisi dan pelekatan bayi sudah tepat.","Biarkan bayi menyusu secara efektif dan tawarkan payudara lainnya sesuai kebutuhan.","Hindari pemberian susu formula, air putih, atau makanan tambahan tanpa indikasi dan arahan tenaga kesehatan.","Jaga asupan makanan, minuman, dan istirahat ibu.","Pantau berat badan dan kondisi bayi sesuai jadwal pemeriksaan.","Konsultasikan kesulitan menyusui kepada bidan atau tenaga kesehatan."]},{"t":"note","x":"Catatan: Payudara yang terasa lembek atau hasil ASI perah yang sedikit tidak selalu berarti ASI ibu kurang. Kecukupan ASI lebih tepat dinilai melalui pola menyusu, buang air kecil, kondisi bayi, dan pertambahan berat badan."},{"t":"h3","x":"Kapan Ibu Perlu Berkonsultasi?"},{"t":"p","x":"Hubungi bidan atau tenaga kesehatan jika ibu merasa ASI belum mencukupi, bayi sulit melekat, menyusu terasa sangat menyakitkan, jumlah urine bayi berkurang, atau berat badan bayi tidak bertambah sesuai harapan."},{"t":"note","x":"Pesan untuk Ibu: Setiap bayi memiliki pola menyusu yang berbeda. Jangan ragu meminta bantuan bidan untuk memastikan bayi mendapatkan ASI yang cukup."}]},{"id":"m9","title":"Cara Meningkatkan Produksi ASI secara Aman","sub":"","sec":"asi-corner","secName":"ASI Corner","icon":"💧","bg":"#E3F0FF","ac":"#3B82C4","sum":"Cara aman membantu produksi ASI: menyusui sering, pelekatan, nutrisi, istirahat, dan dukungan keluarga.","min":3,"b":[{"t":"h3","x":"Mengapa Produksi ASI Bisa Berbeda?"},{"t":"p","x":"Produksi ASI setiap ibu dapat berbeda dan menyesuaikan kebutuhan bayi. Pada awal masa nifas, ASI yang keluar biasanya masih berupa kolostrum, yaitu ASI pertama yang berwarna kekuningan dan kaya zat pelindung."},{"t":"p","x":"Produksi ASI umumnya meningkat dalam beberapa hari setelah persalinan. Jika ibu merasa ASI masih sedikit, jangan langsung khawatir. Hal terpenting adalah memastikan bayi menyusu secara efektif dan mendapatkan asupan yang cukup."},{"t":"h3","x":"Cara Membantu Meningkatkan Produksi ASI"},{"t":"h4","x":"Susui bayi sesering mungkin"},{"t":"ul","i":["Susui bayi sesuai tanda lapar, termasuk pada malam hari.","Bayi baru lahir umumnya menyusu 8–12 kali dalam 24 jam.","Hindari membatasi durasi menyusu secara kaku jika bayi masih menyusu aktif."]},{"t":"h4","x":"Pastikan posisi dan pelekatan benar"},{"t":"ul","i":["Posisikan tubuh bayi menghadap tubuh ibu.","Pastikan kepala dan badan bayi berada dalam satu garis.","Dekatkan bayi ke payudara, bukan membungkukkan tubuh ibu ke arah bayi.","Pastikan mulut bayi terbuka lebar dan melekat pada sebagian besar areola, bukan hanya puting."]},{"t":"p","x":"Pelekatan yang baik membantu bayi mengisap ASI secara efektif dan mengurangi risiko puting lecet."},{"t":"h4","x":"Kosongkan payudara secara efektif"},{"t":"p","x":"Produksi ASI mengikuti prinsip permintaan dan pengeluaran. Menyusui atau memerah ASI secara efektif dan teratur membantu tubuh mempertahankan produksi ASI."},{"t":"p","x":"Jika ibu dan bayi terpisah atau bayi belum dapat menyusu secara efektif, ibu dapat meminta bimbingan bidan mengenai cara memerah ASI dengan tangan atau menggunakan pompa ASI."},{"t":"h4","x":"Penuhi kebutuhan nutrisi dan cairan"},{"t":"ul","i":["Konsumsi makanan bergizi seimbang dengan sumber protein, sayur, buah, dan makanan pokok.","Minum sesuai rasa haus dan kebutuhan tubuh.","Hindari diet ketat selama pemulihan tanpa arahan tenaga kesehatan."]},{"t":"h4","x":"Istirahat dan minta dukungan keluarga"},{"t":"p","x":"Ibu membutuhkan waktu untuk pulih setelah persalinan. Keluarga dapat membantu merawat bayi, menyiapkan makanan, dan mengerjakan pekerjaan rumah agar ibu memiliki waktu untuk beristirahat dan menyusui."},{"t":"h3","x":"Apakah Makanan Tertentu Bisa Memperbanyak ASI?"},{"t":"p","x":"Tidak ada satu makanan atau minuman yang terbukti pasti meningkatkan produksi ASI pada semua ibu. Ibu dianjurkan mengonsumsi makanan bergizi seimbang dan cukup cairan."},{"t":"p","x":"Jamu, suplemen pelancar ASI, atau obat tertentu tidak boleh digunakan sembarangan karena manfaat dan keamanannya dapat berbeda. Konsultasikan terlebih dahulu dengan bidan atau dokter."},{"t":"h3","x":"Bagaimana Jika ASI Terasa Sedikit?"},{"t":"lb","x":"Jika ibu merasa ASI sedikit, lakukan langkah berikut:"},{"t":"ol","i":["Amati frekuensi dan efektivitas bayi saat menyusu.","Periksa kembali posisi dan pelekatan bayi.","Catat jumlah popok basah bayi sesuai usianya.","Pantau berat badan bayi sesuai jadwal pemeriksaan.","Minta bidan menilai proses menyusui dan kondisi bayi."]},{"t":"p","x":"Payudara yang terasa lebih lembut atau hasil ASI perah yang sedikit tidak selalu berarti produksi ASI kurang. Penilaian perlu mempertimbangkan kondisi bayi secara keseluruhan."},{"t":"h3","x":"Kapan Harus Meminta Bantuan?"},{"t":"lb","x":"Segera konsultasikan kepada bidan atau tenaga kesehatan jika:"},{"t":"ul","i":["Bayi sulit melekat atau tidak terdengar menelan saat menyusu.","Bayi terus-menerus tampak lapar atau tidak menyusu secara efektif.","Jumlah urine bayi berkurang.","Berat badan bayi tidak bertambah sesuai harapan.","Ibu mengalami puting lecet berat, nyeri payudara, kemerahan, atau demam."]},{"t":"p","x":"Jika bayi sangat lemas, sulit dibangunkan, tidak mampu menyusu, atau menunjukkan tanda dehidrasi, segera bawa ke fasilitas kesehatan."},{"t":"h3","x":"Pesan untuk Ibu"},{"t":"p","x":"Produksi ASI dapat dibantu dengan menyusui secara efektif dan teratur, memperbaiki pelekatan, serta mendapatkan dukungan yang tepat. Ibu tidak harus menghadapi kesulitan menyusui sendirian. Mintalah bantuan bidan jika memiliki kekhawatiran mengenai produksi ASI."}]},{"id":"m10","title":"Perawatan Payudara dan Pencegahan Masalah Menyusui","sub":"","sec":"asi-corner","secName":"ASI Corner","icon":"🌸","bg":"#FDE7EF","ac":"#E0568A","sum":"Merawat payudara, mengatasi bengkak dan puting lecet, serta mengenali tanda mastitis.","min":3,"b":[{"t":"h3","x":"Mengapa Perawatan Payudara Penting?"},{"t":"p","x":"Perawatan payudara selama masa nifas membantu ibu merasa nyaman dan mendukung proses menyusui. Ibu tidak perlu melakukan perawatan yang rumit. Kebersihan, posisi menyusui yang tepat, dan pengeluaran ASI secara efektif merupakan hal yang penting."},{"t":"h3","x":"Cara Merawat Payudara dengan Benar"},{"t":"lb","x":"Berikut langkah-langkah yang dapat dilakukan ibu:"},{"t":"ol","i":["Jaga kebersihan payudara. Mandi secara teratur dan bersihkan payudara dengan air bersih."]},{"t":"p","x":"Tidak perlu menggosok puting menggunakan sabun atau bahan yang dapat menyebabkan iritasi."},{"t":"ol","i":["Gunakan bra yang nyaman. Pilih bra yang menopang payudara tanpa menekan atau terlalu ketat.","Susui bayi sesuai kebutuhan. Biarkan bayi menyusu sesuai tanda lapar dan pastikan pelekatan sudah benar.","Hindari memijat payudara terlalu keras. Tekanan berlebihan dapat memperburuk pembengkakan dan peradangan.","Jaga puting tetap nyaman. Jika puting terasa nyeri atau lecet, periksa kembali pelekatan bayi dan minta bantuan bidan bila diperlukan."]},{"t":"h3","x":"Mengenali Masalah Payudara saat Menyusui"},{"t":"h4","x":"Payudara terasa penuh atau bengkak"},{"t":"p","x":"Payudara dapat terasa penuh ketika produksi ASI meningkat. Jika terjadi pembengkakan, ibu dapat:"},{"t":"ul","i":["Menyusui bayi secara teratur sesuai kebutuhannya.","Mengompres payudara dengan kompres dingin untuk membantu mengurangi nyeri dan bengkak.","Memerah sedikit ASI dengan lembut jika areola terlalu tegang sehingga bayi sulit melekat.","Menghindari pijatan keras dan pemerahan berlebihan yang justru dapat meningkatkan pembengkakan."]},{"t":"h4","x":"Puting lecet atau nyeri"},{"t":"p","x":"Puting lecet dapat terjadi akibat pelekatan yang kurang tepat atau masalah menyusui lainnya."},{"t":"lb","x":"Langkah yang dapat dilakukan:"},{"t":"ul","i":["Periksa posisi dan pelekatan bayi.","Pastikan bayi membuka mulut lebar saat mulai menyusu.","Hindari menggosok puting dengan sabun, alkohol, atau bahan iritatif.","Mintalah bantuan bidan jika nyeri berlanjut, luka semakin parah, atau muncul tanda infeksi."]},{"t":"p","x":"Nyeri yang menetap tidak perlu dianggap sebagai hal yang harus ditahan selama menyusui."},{"t":"h4","x":"Payudara merah, panas, dan nyeri"},{"t":"p","x":"Kondisi ini dapat menandakan peradangan payudara atau mastitis, terutama jika disertai demam dan badan terasa tidak enak."},{"t":"p","x":"Ibu sebaiknya segera berkonsultasi dengan tenaga kesehatan jika mengalami:"},{"t":"ul","i":["Payudara merah, panas, dan nyeri yang semakin berat.","Demam atau menggigil.","Benjolan yang semakin nyeri.","Kondisi yang tidak membaik atau semakin memburuk."]},{"t":"p","x":"Jangan memijat benjolan dengan keras atau menghentikan menyusui secara mendadak tanpa arahan tenaga kesehatan."},{"t":"h3","x":"Cara Mencegah Masalah Menyusui"},{"t":"lb","x":"Ibu dapat melakukan beberapa langkah berikut:"},{"t":"ul","i":["Memastikan posisi dan pelekatan bayi benar.","Menyusui sesuai tanda lapar bayi.","Menghindari tekanan berlebihan pada payudara.","Menggunakan pakaian dan bra yang nyaman.","Meminta bantuan bidan jika muncul nyeri atau kesulitan menyusui.","Menjaga kesehatan dan memenuhi kebutuhan istirahat selama masa nifas."]},{"t":"h3","x":"Kapan Harus Menghubungi Tenaga Kesehatan?"},{"t":"p","x":"Segera konsultasikan kondisi ibu jika mengalami demam, kemerahan pada payudara yang meluas, nyeri yang semakin berat, atau kondisi yang tidak membaik. Pemeriksaan diperlukan untuk menentukan penyebab dan penanganan yang sesuai."},{"t":"p","x":"Jika ibu merasa sangat lemas atau mengalami kondisi yang memburuk dengan cepat, segera cari pertolongan medis."},{"t":"h3","x":"Pesan untuk Ibu"},{"t":"p","x":"Payudara tidak perlu dipijat keras atau dibersihkan dengan bahan khusus agar ASI lancar."},{"t":"p","x":"Perawatan yang tepat, pelekatan yang baik, dan bantuan tenaga kesehatan ketika muncul masalah dapat membantu proses menyusui menjadi lebih nyaman."}]},{"id":"m11","title":"Pijat Oksitosin untuk Mendukung Pengeluaran ASI","sub":"","sec":"oksitosin","secName":"Pijat Oksitosin","icon":"💆","bg":"#FFF1D6","ac":"#D98A0B","sum":"Teknik pijat lembut di punggung atas untuk membantu rileks dan mendukung pengeluaran ASI.","min":3,"b":[{"t":"h3","x":"Apa Itu Pijat Oksitosin?"},{"t":"p","x":"Pijat oksitosin merupakan teknik pemijatan lembut pada area punggung, terutama di sepanjang tulang belakang bagian atas hingga sekitar tulang belikat. Teknik ini bertujuan membantu ibu merasa rileks dan mendukung refleks pengeluaran ASI."},{"t":"p","x":"Oksitosin adalah hormon yang membantu ASI mengalir dari payudara ketika bayi menyusu atau ketika ibu memerah ASI."},{"t":"h3","x":"Apa Manfaat Pijat Oksitosin?"},{"t":"lb","x":"Pijat oksitosin dapat membantu:"},{"t":"ul","i":["Membuat ibu merasa lebih rileks dan nyaman.","Mengurangi ketegangan selama proses menyusui.","Mendukung refleks pengeluaran ASI.","Membantu ibu merasa lebih tenang selama masa nifas."]},{"t":"note","x":"Penting: Pijat oksitosin bukan jaminan produksi ASI meningkat dan tidak menggantikan proses menyusui yang efektif, pelekatan yang tepat, atau pemeriksaan oleh tenaga kesehatan jika terdapat masalah menyusui."},{"t":"h3","x":"Kapan Pijat Oksitosin Dapat Dilakukan?"},{"t":"p","x":"Pijat dapat dilakukan ketika ibu merasa nyaman, misalnya sebelum menyusui atau memerah ASI."},{"t":"p","x":"Sebaiknya pijat dilakukan oleh bidan atau orang yang telah mendapatkan pelatihan, terutama pada ibu yang baru melahirkan atau memiliki keluhan kesehatan tertentu."},{"t":"h3","x":"Langkah-Langkah Pijat Oksitosin"},{"t":"h4","x":"Persiapan"},{"t":"ol","i":["Cuci tangan sebelum melakukan pemijatan.","Siapkan ruangan yang nyaman dan tenang.","Bantu ibu duduk dengan posisi nyaman dan tubuh sedikit condong ke depan, dengan tetap menjaga privasi.","Pastikan ibu tidak merasa nyeri dan menyetujui tindakan."]},{"t":"h4","x":"Pelaksanaan"},{"t":"ol","i":["Letakkan kedua tangan secara lembut pada area punggung bagian atas, di sekitar tulang belakang dan tulang belikat.","Lakukan pemijatan lembut di sepanjang sisi tulang belakang bagian atas menuju area sekitar tulang belikat sesuai teknik yang telah dipelajari.","Gunakan tekanan yang nyaman, tidak terlalu kuat, dan hindari menekan langsung tulang belakang.","Tanyakan secara berkala apakah ibu merasa nyaman.","Hentikan pemijatan jika ibu merasa nyeri, pusing, atau tidak nyaman."]},{"t":"h4","x":"Setelah pemijatan"},{"t":"ol","i":["Bantu ibu kembali ke posisi yang nyaman.","Tawarkan bayi untuk menyusu sesuai tanda lapar atau bantu ibu memerah ASI bila diperlukan.","Amati kenyamanan ibu dan proses menyusui.","Catat keluhan atau respons ibu jika pemijatan dilakukan dalam pelayanan kesehatan."]},{"t":"p","x":"Durasi dan teknik pemijatan perlu disesuaikan dengan panduan yang digunakan oleh tenaga kesehatan. Hindari pemijatan yang terlalu keras."},{"t":"h3","x":"Hal yang Perlu Diperhatikan"},{"t":"ul","i":["Pijat oksitosin tidak boleh menimbulkan rasa sakit.","Hindari pemijatan pada area yang mengalami luka atau cedera.","Jika ibu mengalami nyeri punggung berat, kondisi pascapersalinan dengan komplikasi, atau keluhan kesehatan tertentu, konsultasikan terlebih dahulu kepada tenaga kesehatan.","Jika ibu mengalami demam, payudara merah dan nyeri, atau kondisi yang memburuk, jangan hanya mengandalkan pijat untuk mengatasinya.","Jangan menjanjikan bahwa pijat oksitosin pasti memperbanyak ASI."]},{"t":"h3","x":"Cara Mendukung Pengeluaran ASI Selain Pijat Oksitosin"},{"t":"lb","x":"Ibu juga dapat melakukan beberapa langkah berikut:"},{"t":"ul","i":["Menyusui bayi sesuai tanda lapar.","Memastikan posisi dan pelekatan bayi benar.","Melakukan kontak kulit ke kulit jika memungkinkan dan aman.","Menciptakan suasana menyusui yang nyaman.","Mendapatkan dukungan emosional dan bantuan keluarga.","Meminta bantuan bidan jika bayi tidak menyusu secara efektif atau berat badannya tidak bertambah sesuai harapan."]},{"t":"h3","x":"Pesan untuk Ibu"},{"t":"p","x":"Ibu tidak perlu merasa bersalah jika ASI belum mengalir sesuai harapan. Setiap ibu memiliki pengalaman menyusui yang berbeda. Pijat oksitosin dapat menjadi salah satu bentuk dukungan relaksasi, tetapi kecukupan ASI tetap perlu dinilai dari kondisi bayi dan proses menyusuinya."}]},{"id":"m12","title":"Pijat Endorfin untuk Relaksasi Ibu Nifas","sub":"","sec":"oksitosin","secName":"Pijat Oksitosin","icon":"🌿","bg":"#E4F6EA","ac":"#2F9E5B","sum":"Sentuhan lembut untuk relaksasi ibu nifas, beserta langkah dan hal yang perlu diperhatikan.","min":3,"b":[{"t":"h3","x":"Apa Itu Pijat Endorfin?"},{"t":"p","x":"Pijat endorfin merupakan teknik sentuhan atau usapan lembut pada tubuh yang bertujuan membantu ibu merasa lebih rileks dan nyaman. Teknik ini dapat menjadi salah satu bentuk dukungan selama masa pemulihan setelah persalinan."},{"t":"p","x":"Endorfin merupakan zat kimia alami tubuh yang berperan dalam pengaturan rasa nyeri dan suasana hati. Namun, manfaat pijat endorfin dapat berbeda pada setiap ibu dan tidak menjamin peningkatan kadar endorfin atau hilangnya rasa nyeri."},{"t":"h3","x":"Apa Manfaat Pijat Endorfin?"},{"t":"p","x":"Pijat endorfin dapat digunakan sebagai pendamping relaksasi untuk membantu:"},{"t":"ul","i":["Memberikan rasa nyaman selama masa nifas.","Mengurangi ketegangan tubuh.","Membantu ibu merasa lebih tenang.","Mendukung kenyamanan emosional selama pemulihan."]},{"t":"note","x":"Catatan: Pijat endorfin bukan pengganti pemeriksaan dan pengobatan jika ibu mengalami nyeri berat, demam, perdarahan berlebihan, atau tanda bahaya lainnya."},{"t":"h3","x":"Kapan Pijat Endorfin Dapat Dilakukan?"},{"t":"p","x":"Pijat dapat dilakukan ketika ibu berada dalam kondisi stabil, merasa nyaman, dan bersedia menerima sentuhan."},{"t":"p","x":"Sebaiknya teknik diperagakan oleh bidan atau tenaga yang telah mendapatkan pelatihan. Pada ibu yang baru menjalani persalinan dengan komplikasi, operasi sesar, atau memiliki kondisi kesehatan tertentu, konsultasikan terlebih dahulu dengan tenaga kesehatan."},{"t":"h3","x":"Langkah-Langkah Pijat Endorfin"},{"t":"h4","x":"Persiapan"},{"t":"ol","i":["Cuci tangan sebelum melakukan pemijatan.","Siapkan tempat yang bersih, tenang, dan nyaman.","Bantu ibu memilih posisi duduk atau berbaring yang nyaman.","Jelaskan tindakan yang akan dilakukan dan minta persetujuan ibu.","Pastikan tidak ada luka atau area tubuh yang tidak boleh disentuh."]},{"t":"h4","x":"Pelaksanaan"},{"t":"ol","i":["Minta ibu mengatur napas secara perlahan dan rileks.","Lakukan sentuhan atau usapan ringan pada area tubuh yang aman, misalnya bahu dan punggung bagian atas.","Gunakan gerakan perlahan dengan tekanan yang sangat lembut.","Hindari menekan langsung tulang belakang, luka operasi, atau area yang terasa nyeri.","Tanyakan apakah ibu merasa nyaman selama pemijatan.","Hentikan tindakan jika ibu merasa nyeri, pusing, atau tidak nyaman."]},{"t":"p","x":"Teknik, area pemijatan, dan durasi perlu mengikuti panduan yang telah dipelajari serta disesuaikan dengan kondisi ibu."},{"t":"h4","x":"Setelah Pemijatan"},{"t":"ol","i":["Bantu ibu kembali ke posisi yang nyaman.","Berikan kesempatan kepada ibu untuk beristirahat.","Tanyakan perubahan yang dirasakan setelah pemijatan.","Anjurkan ibu menyampaikan keluhan yang masih dirasakan kepada bidan."]},{"t":"h3","x":"Hal yang Perlu Diperhatikan"},{"t":"ul","i":["Pijat harus dilakukan dengan lembut dan tidak menimbulkan rasa sakit.","Jangan memijat area luka operasi atau luka yang belum sembuh.","Hindari pemijatan pada area yang mengalami cedera atau peradangan.","Hentikan pemijatan jika muncul keluhan yang tidak biasa.","Jangan menggunakan pijat sebagai satu-satunya cara untuk mengatasi nyeri atau gangguan emosional yang berat."]},{"t":"h3","x":"Cara Sederhana Membantu Ibu Lebih Rileks"},{"t":"lb","x":"Selain pijat, ibu dapat mencoba:"},{"t":"ul","i":["Mengatur napas secara perlahan.","Beristirahat ketika bayi tidur jika memungkinkan.","Meminta bantuan keluarga dalam merawat bayi dan mengerjakan pekerjaan rumah.","Mendapatkan dukungan emosional dari pasangan dan keluarga.","Melakukan aktivitas ringan sesuai kondisi pemulihan.","Berkonsultasi dengan bidan jika merasa cemas, sedih berkepanjangan, atau kesulitan menjalani aktivitas sehari-hari."]},{"t":"p","x":"Jika ibu mengalami keinginan menyakiti diri sendiri atau bayi, segera cari pertolongan medis."},{"t":"h3","x":"Pesan untuk Ibu"},{"t":"p","x":"Masa nifas merupakan masa pemulihan fisik dan emosional. Ibu berhak mendapatkan istirahat, dukungan, dan perawatan yang nyaman. Pijat endorfin dapat menjadi salah satu pilihan relaksasi apabila dilakukan secara aman dan sesuai kondisi ibu."}]},{"id":"m4","title":"Mengenali Tanda Bahaya Masa Nifas","sub":"Kenali Tandanya, Jangan Tunda Pertolongan!","sec":"tanda-bahaya","secName":"Tanda Bahaya","icon":"🚨","bg":"#FEE4E2","ac":"#DC2626","sum":"Kenali perdarahan, demam, sakit kepala hebat, sesak napas, dan tanda bahaya lain yang perlu pertolongan segera.","min":3,"b":[{"t":"h3","x":"Apa Itu Tanda Bahaya Masa Nifas?"},{"t":"p","x":"Tanda bahaya masa nifas adalah gejala atau keluhan setelah persalinan yang dapat menunjukkan adanya komplikasi dan memerlukan pemeriksaan tenaga kesehatan."},{"t":"p","x":"Tanda bahaya dapat muncul dalam beberapa hari atau minggu setelah melahirkan. Oleh karena itu, ibu dan keluarga perlu mengetahui gejalanya agar pertolongan tidak terlambat."},{"t":"h3","x":"Apa Saja Tanda Bahaya Masa Nifas?"},{"t":"h4","x":"Perdarahan Berlebihan"},{"t":"p","x":"Perdarahan yang sangat banyak, tiba-tiba bertambah banyak, atau disertai gumpalan darah besar dapat menjadi tanda komplikasi."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera cari pertolongan medis jika perdarahan banyak atau ibu merasa lemas, pusing, maupun hampir pingsan."},{"t":"h4","x":"Demam"},{"t":"p","x":"Demam dengan suhu tubuh 38°C atau lebih dapat menjadi tanda infeksi, terutama jika disertai menggigil, nyeri, atau kondisi tubuh memburuk."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera hubungi tenaga kesehatan untuk mendapatkan pemeriksaan."},{"t":"h4","x":"Nyeri Perut Hebat"},{"t":"p","x":"Nyeri perut yang berat, semakin memburuk, atau tidak membaik perlu diwaspadai."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera periksakan diri, terutama jika nyeri disertai demam atau perdarahan."},{"t":"h4","x":"Lokia Berbau Tidak Sedap"},{"t":"p","x":"Lokia adalah cairan yang keluar dari vagina setelah persalinan. Perubahan jumlah dan warna lokia dapat terjadi selama masa pemulihan, tetapi bau busuk atau tidak sedap yang menyengat perlu diperiksa."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera konsultasikan kepada tenaga kesehatan, khususnya jika disertai demam atau nyeri perut."},{"t":"h4","x":"Sakit Kepala Hebat dan Gangguan Penglihatan"},{"t":"p","x":"Sakit kepala hebat, pandangan kabur, atau gangguan penglihatan setelah melahirkan dapat menandakan komplikasi serius, termasuk preeklamsia pascapersalinan."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera cari pertolongan medis. Jangan menunggu hingga jadwal kontrol berikutnya."},{"t":"h4","x":"Sesak Napas atau Nyeri Dada"},{"t":"p","x":"Sesak napas mendadak, nyeri dada, atau kesulitan bernapas dapat menandakan kondisi yang mengancam jiwa."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera pergi ke IGD atau hubungi layanan kegawatdaruratan setempat."},{"t":"h4","x":"Nyeri dan Bengkak pada Salah Satu Tungkai"},{"t":"p","x":"Nyeri, kemerahan, atau pembengkakan pada salah satu kaki dapat menjadi tanda penggumpalan darah."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera periksakan diri. Jangan memijat tungkai yang bengkak dan terasa nyeri sebelum mendapatkan penilaian tenaga kesehatan."},{"t":"h4","x":"Luka Persalinan Bermasalah"},{"t":"p","x":"Luka perineum atau luka operasi sesar yang semakin nyeri, kemerahan, membengkak, bernanah, atau terbuka perlu diwaspadai."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Segera hubungi bidan atau dokter untuk pemeriksaan."},{"t":"h4","x":"Perubahan Emosional yang Berat"},{"t":"p","x":"Kesedihan atau kecemasan yang berat, kebingungan, halusinasi, atau pikiran untuk menyakiti diri sendiri maupun bayi membutuhkan pertolongan segera."},{"t":"lb","x":"Yang harus dilakukan:"},{"t":"p","x":"Mintalah bantuan keluarga dan segera hubungi tenaga kesehatan. Jika ada risiko menyakiti diri sendiri atau bayi, jangan biarkan ibu sendirian dan cari pertolongan darurat."},{"t":"h3","x":"Apa yang Harus Dilakukan Keluarga?"},{"t":"p","x":"Keluarga memiliki peran penting dalam mengenali tanda bahaya dan membantu ibu memperoleh pertolongan."},{"t":"ul","i":["Perhatikan perubahan kondisi fisik dan emosional ibu.","Dengarkan keluhan ibu dan jangan menganggapnya sebagai hal biasa.","Bantu ibu mengakses fasilitas kesehatan jika muncul tanda bahaya.","Jangan memberikan obat atau ramuan tanpa anjuran tenaga kesehatan.","Jangan menunda pertolongan hanya karena ibu masih dapat beraktivitas."]},{"t":"h3","x":"Kapan Ibu Harus ke Fasilitas Kesehatan?"},{"t":"p","x":"Segera cari pertolongan darurat jika ibu mengalami perdarahan banyak, sesak napas, nyeri dada, kejang, pingsan, sakit kepala hebat disertai gangguan penglihatan, atau kondisi lain yang memburuk dengan cepat."},{"t":"p","x":"Untuk demam, nyeri yang memburuk, lokia berbau tidak sedap, dan tanda infeksi lainnya, ibu perlu segera mendapatkan pemeriksaan pada hari yang sama."},{"t":"p","x":"Jangan menunggu jadwal kunjungan nifas jika terdapat tanda bahaya."},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"Mengenali tanda bahaya masa nifas membantu ibu dan keluarga mengambil tindakan lebih cepat untuk mencegah komplikasi yang serius."},{"t":"note","x":"Ingat, Bu! Jika merasa ada sesuatu yang tidak beres setelah melahirkan, jangan ragu mencari pertolongan. Lebih baik segera diperiksa daripada menunda penanganan."}]},{"id":"m5","title":"Perubahan Fisik dan Emosional Setelah Melahirkan","sub":"Kenali Perubahan Tubuh dan Perasaanmu, Ibu Tidak Sendirian","sec":"mental-health","secName":"Kesehatan Mental","icon":"💗","bg":"#EEE7FB","ac":"#7C5CC4","sum":"Memahami lokia, kontraksi rahim, baby blues, depresi pascapersalinan, dan kecemasan setelah melahirkan.","min":4,"b":[{"t":"h3","x":"Mengapa Terjadi Perubahan Setelah Melahirkan?"},{"t":"p","x":"Setelah persalinan, tubuh ibu mengalami proses pemulihan dan penyesuaian. Perubahan hormon, kelelahan, kurang tidur, serta tanggung jawab merawat bayi juga dapat memengaruhi kondisi emosional ibu."},{"t":"p","x":"Sebagian perubahan merupakan bagian dari proses pemulihan. Namun, beberapa keluhan perlu diperiksa agar tidak berkembang menjadi masalah kesehatan yang lebih serius."},{"t":"h3","x":"Perubahan Fisik yang Dapat Terjadi"},{"t":"h4","x":"Keluarnya Darah Nifas (Lokia)"},{"t":"p","x":"Lokia adalah cairan yang keluar dari vagina setelah melahirkan. Warnanya dapat berubah dari merah menjadi kecokelatan, kemudian lebih pucat seiring waktu."},{"t":"lb","x":"Yang perlu dilakukan:"},{"t":"ul","i":["Gunakan pembalut dan ganti secara teratur.","Amati jumlah, warna, dan bau cairan yang keluar.","Segera cari pertolongan jika perdarahan sangat banyak atau tiba-tiba bertambah banyak."]},{"t":"h4","x":"Rahim Berkontraksi"},{"t":"p","x":"Rahim berkontraksi untuk kembali mendekati ukuran sebelum kehamilan. Ibu mungkin merasakan kram pada perut bagian bawah, terutama saat menyusui."},{"t":"lb","x":"Yang perlu dilakukan:"},{"t":"ul","i":["Beristirahat dengan cukup.","Ikuti anjuran tenaga kesehatan untuk mengatasi nyeri.","Periksakan diri jika nyeri sangat berat atau semakin memburuk."]},{"t":"h4","x":"Payudara Berubah"},{"t":"p","x":"Payudara dapat terasa lebih penuh ketika produksi ASI meningkat. Pada sebagian ibu, payudara juga terasa tegang atau tidak nyaman."},{"t":"lb","x":"Yang perlu dilakukan:"},{"t":"ul","i":["Susui bayi sesuai kebutuhan dan perhatikan pelekatan.","Hindari memijat payudara dengan keras.","Konsultasikan kepada tenaga kesehatan jika payudara terasa sangat nyeri, kemerahan, atau disertai demam."]},{"t":"h4","x":"Tubuh Mudah Lelah"},{"t":"p","x":"Persalinan dan aktivitas merawat bayi dapat membuat ibu mudah lelah."},{"t":"lb","x":"Yang perlu dilakukan:"},{"t":"ul","i":["Makan makanan bergizi dan minum cukup.","Beristirahat setiap ada kesempatan.","Minta bantuan pasangan atau keluarga.","Konsultasikan kelelahan yang berat atau tidak membaik."]},{"t":"h4","x":"Perubahan pada Area Perineum"},{"t":"p","x":"Jika mengalami robekan atau episiotomi, ibu mungkin merasakan nyeri atau ketidaknyamanan pada area perineum."},{"t":"lb","x":"Yang perlu dilakukan:"},{"t":"ul","i":["Jaga kebersihan area perineum.","Hindari menggosok luka.","Segera periksakan diri jika nyeri memburuk, luka bernanah, atau disertai demam."]},{"t":"h3","x":"Perubahan Emosional Setelah Melahirkan"},{"t":"h4","x":"Baby Blues"},{"t":"p","x":"Baby blues adalah perubahan suasana hati yang dapat terjadi pada hari-hari awal setelah persalinan. Ibu mungkin menjadi lebih mudah menangis, sensitif, cemas, atau merasa kewalahan."},{"t":"p","x":"Kondisi ini umumnya membaik dalam waktu sekitar dua minggu."},{"t":"lb","x":"Cara mengatasinya:"},{"t":"ul","i":["Beristirahat dan makan secara teratur.","Ceritakan perasaan kepada orang yang dipercaya.","Mintalah bantuan keluarga untuk merawat bayi.","Hindari menyalahkan diri sendiri ketika merasa lelah atau sedih."]},{"t":"p","x":"Jika keluhan menetap lebih dari dua minggu, semakin berat, atau mengganggu aktivitas sehari-hari, segera konsultasikan kepada tenaga kesehatan."},{"t":"h4","x":"Depresi Pascapersalinan"},{"t":"p","x":"Depresi pascapersalinan merupakan kondisi kesehatan mental yang lebih serius daripada baby blues. Gejalanya dapat berupa kesedihan berkepanjangan, kehilangan minat, rasa bersalah berlebihan, kesulitan menjalani aktivitas sehari-hari, atau kesulitan membangun kedekatan dengan bayi."},{"t":"p","x":"Kondisi ini dapat muncul dalam beberapa minggu atau bulan setelah persalinan."},{"t":"lb","x":"Yang perlu dilakukan:"},{"t":"ul","i":["Cari bantuan bidan, dokter, atau tenaga kesehatan mental.","Libatkan pasangan atau keluarga sebagai sumber dukungan.","Jangan menganggap kondisi ini sebagai kelemahan atau kegagalan seorang ibu."]},{"t":"h4","x":"Kecemasan Setelah Melahirkan"},{"t":"p","x":"Sebagian ibu merasa khawatir berlebihan mengenai kesehatan bayi, produksi ASI, atau kemampuannya merawat bayi."},{"t":"lb","x":"Cara mengatasinya:"},{"t":"ul","i":["Diskusikan kekhawatiran dengan bidan.","Pelajari perawatan bayi dari sumber tepercaya.","Mintalah dukungan keluarga.","Cari bantuan jika kecemasan mengganggu tidur, makan, atau aktivitas sehari-hari."]},{"t":"h3","x":"Kapan Harus Mencari Pertolongan?"},{"t":"lb","x":"Segera cari pertolongan medis jika ibu mengalami:"},{"t":"ul","i":["Perdarahan yang sangat banyak.","Demam 38°C atau lebih.","Nyeri perut hebat atau semakin memburuk.","Sesak napas atau nyeri dada.","Sakit kepala hebat disertai gangguan penglihatan.","Kesedihan atau kecemasan berat yang mengganggu fungsi sehari-hari.","Kebingungan berat, halusinasi, atau pikiran untuk menyakiti diri sendiri maupun bayi."]},{"t":"p","x":"Jika terdapat risiko menyakiti diri sendiri atau bayi, jangan biarkan ibu sendirian. Mintalah bantuan orang tepercaya dan segera cari pertolongan darurat."},{"t":"h3","x":"Peran Keluarga dalam Mendukung Ibu"},{"t":"p","x":"Pasangan dan keluarga dapat membantu ibu melewati masa pemulihan dengan cara:"},{"t":"ul","i":["Mendengarkan keluhan tanpa menghakimi.","Membantu merawat bayi dan melakukan pekerjaan rumah.","Memberikan kesempatan kepada ibu untuk beristirahat.","Membantu ibu mendapatkan makanan bergizi.","Mendampingi ibu mencari pertolongan ketika diperlukan."]},{"t":"h3","x":"Kesimpulan"},{"t":"p","x":"Perubahan fisik dan emosional merupakan bagian penting yang perlu dipahami selama masa nifas. Ibu perlu mengetahui perubahan yang umum terjadi serta mengenali gejala yang membutuhkan pemeriksaan."},{"t":"note","x":"Ingat, Bu! Tidak semua ibu mengalami masa pemulihan yang sama. Kamu berhak mendapatkan dukungan, waktu untuk pulih, dan pertolongan ketika membutuhkannya."}]},{"id":"m14","title":"Relaksasi dan Aromaterapi yang Aman bagi Ibu Nifas","sub":"","sec":"mental-health","secName":"Kesehatan Mental","icon":"🧘","bg":"#EEE7FB","ac":"#7C5CC4","sum":"Latihan napas, musik, dan tips aromaterapi yang aman bagi ibu dan bayi.","min":3,"b":[{"t":"h3","x":"Apa Itu Relaksasi?"},{"t":"p","x":"Relaksasi merupakan kegiatan untuk membantu tubuh dan pikiran menjadi lebih tenang."},{"t":"p","x":"Selama masa nifas, ibu dapat mengalami kelelahan, perubahan emosi, dan kesulitan beristirahat karena harus merawat bayi."},{"t":"p","x":"Relaksasi dapat menjadi salah satu cara untuk membantu ibu merasa lebih nyaman selama proses pemulihan."},{"t":"h3","x":"Manfaat Relaksasi bagi Ibu Nifas"},{"t":"lb","x":"Relaksasi dapat membantu:"},{"t":"p","x":"●​ Mengurangi ketegangan dan stres.​"},{"t":"p","x":"●​ Membantu ibu merasa lebih tenang.​"},{"t":"p","x":"●​ Mendukung kenyamanan saat menyusui.​"},{"t":"p","x":"●​ Membantu ibu mempersiapkan diri untuk beristirahat.​"},{"t":"p","x":"●​ Meningkatkan kesadaran ibu terhadap kebutuhan dirinya sendiri.​"},{"t":"p","x":"Relaksasi bukan pengganti bantuan medis apabila ibu mengalami gangguan kesehatan fisik atau emosional yang berat."},{"t":"h3","x":"Cara Melakukan Relaksasi Sederhana"},{"t":"h4","x":"Latihan Pernapasan"},{"t":"p","x":"1.​ Duduk atau berbaring dalam posisi nyaman.​"},{"t":"p","x":"2.​ Tarik napas perlahan melalui hidung.​"},{"t":"p","x":"3.​ Embuskan napas secara perlahan.​"},{"t":"p","x":"4.​ Ulangi beberapa kali tanpa memaksakan diri.​"},{"t":"h4","x":"Mendengarkan Musik yang Menenangkan"},{"t":"p","x":"1.​ Pilih musik yang disukai dan membuat ibu nyaman.​"},{"t":"p","x":"2.​ Dengarkan selama beberapa menit.​"},{"t":"p","x":"3.​ Atur posisi tubuh senyaman mungkin.​"},{"t":"p","x":"4.​ Hentikan jika musik justru membuat ibu tidak nyaman.​"},{"t":"h4","x":"Relaksasi dengan Dukungan Keluarga"},{"t":"p","x":"1.​ Minta pasangan atau keluarga membantu merawat bayi sementara waktu.​"},{"t":"p","x":"2.​ Gunakan kesempatan tersebut untuk beristirahat.​"},{"t":"p","x":"3.​ Sampaikan kebutuhan dan perasaan kepada orang yang dipercaya.​"},{"t":"h3","x":"Apa Itu Aromaterapi?"},{"t":"p","x":"Aromaterapi merupakan penggunaan aroma dari minyak esensial atau bahan aromatik untuk menciptakan suasana yang nyaman. Sebagian orang menggunakannya sebagai pendamping relaksasi."},{"t":"p","x":"Namun, bukti manfaat aromaterapi untuk mengatasi keluhan ibu nifas masih terbatas."},{"t":"p","x":"Aromaterapi tidak boleh dianggap sebagai pengobatan untuk depresi, kecemasan berat, nyeri serius, atau gangguan kesehatan lainnya."},{"t":"h3","x":"Tips Penggunaan Aromaterapi yang Aman"},{"t":"lb","x":"Jika ibu ingin menggunakan aromaterapi, perhatikan hal berikut:"},{"t":"p","x":"●​ Pilih produk dengan informasi komposisi dan petunjuk penggunaan yang jelas.​"},{"t":"p","x":"●​ Gunakan secara hati-hati dan hentikan jika muncul sakit kepala, mual, batuk, atau iritasi.​"},{"t":"p","x":"●​ Hindari menelan minyak esensial.​"},{"t":"p","x":"●​ Jangan mengoleskan minyak esensial pekat langsung pada kulit atau puting.​"},{"t":"p","x":"●​ Hindari kontak minyak dengan mata dan jauhkan dari jangkauan bayi.​"},{"t":"p","x":"●​ Jangan mengarahkan uap atau diffuser langsung ke wajah bayi.​"},{"t":"p","x":"●​ Pastikan ruangan memiliki ventilasi yang baik.​"},{"t":"p","x":"●​ Konsultasikan dengan tenaga kesehatan jika ibu memiliki alergi, asma, atau kondisi kesehatan tertentu.​"},{"t":"p","x":"Aromaterapi tidak wajib digunakan. Ibu tetap dapat melakukan relaksasi melalui pernapasan, musik, istirahat, dan dukungan keluarga."},{"t":"h3","x":"Kapan Ibu Perlu Mendapatkan Bantuan?"},{"t":"p","x":"Hubungi bidan atau tenaga kesehatan jika ibu mengalami kecemasan atau kesedihan yang menetap, sulit menjalani aktivitas sehari-hari, atau merasa tidak mampu merawat diri dan bayi."},{"t":"p","x":"Jika muncul pikiran untuk menyakiti diri sendiri atau bayi, atau ibu mengalami kebingungan berat maupun mendengar atau melihat sesuatu yang tidak dialami orang lain, segera cari pertolongan medis."},{"t":"h3","x":"Pesan untuk Ibu"},{"t":"p","x":"Ibu juga membutuhkan waktu untuk memulihkan diri. Luangkan waktu untuk beristirahat, melakukan aktivitas yang menenangkan, dan meminta bantuan keluarga. Pilih cara relaksasi yang sederhana, nyaman, dan aman bagi ibu maupun bayi."}]}];
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const byId = Object.fromEntries(MATERI.map(m => [m.id, m]));
+
+  // 1. Sisipkan kartu "Selengkapnya" ke tiap section
+  const groups = {};
+  MATERI.forEach(m => (groups[m.sec] = groups[m.sec] || []).push(m));
+  Object.keys(groups).forEach(secId => {
+    const sec = document.getElementById(secId); if (!sec) return;
+    const head = document.createElement('div');
+    head.className = 'materi-head';
+    head.innerHTML = '<span class="materi-kicker">Materi Lengkap</span><h3>Pelajari lebih dalam</h3>';
+    const grid = document.createElement('div');
+    grid.className = 'grid materi-grid';
+    grid.innerHTML = groups[secId].map(m => `
+      <article class="materi-card" data-id="${m.id}">
+        <div class="materi-ic" style="background:${m.bg}">${m.icon}</div>
+        <h4>${esc(m.title)}</h4>
+        <p>${esc(m.sum)}</p>
+        <span class="materi-meta">± ${m.min} menit baca</span>
+        <button type="button" class="materi-btn" data-id="${m.id}">Selengkapnya <span aria-hidden="true">→</span></button>
+      </article>`).join('');
+    sec.appendChild(head); sec.appendChild(grid);
+  });
+
+  // 2. Popup baca
+  const root = document.createElement('div');
+  root.className = 'mm'; root.hidden = true;
+  root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-labelledby', 'mm-title');
+  root.innerHTML = `
+    <div class="mm-backdrop" data-close></div>
+    <article class="mm-panel" tabindex="-1">
+      <div class="mm-bar">
+        <button type="button" class="mm-back" data-close>← Kembali</button>
+        <span class="mm-count"></span>
+        <button type="button" class="mm-x" data-close aria-label="Tutup">✕</button>
+      </div>
+      <div class="mm-scroll">
+        <header class="mm-head"><div class="mm-ic"></div><div class="mm-kicker"></div><h2 id="mm-title"></h2><p class="mm-sub"></p><span class="mm-time"></span></header>
+        <div class="mm-body"></div>
+        <footer class="mm-foot">
+          <div class="mm-pn"><button type="button" data-nav="-1"></button><button type="button" data-nav="1"></button></div>
+          <button type="button" class="mm-back-lg" data-close>← Kembali ke Beranda Materi</button>
+        </footer>
+      </div>
+    </article>`;
+  document.body.appendChild(root);
+  const q = s => root.querySelector(s);
+  const panel = q('.mm-panel'), scroller = q('.mm-scroll');
+  let current = null, lastFocus = null, pushed = false;
+
+  function body(m) {
+    let h = '', n = 0;
+    m.b.forEach(x => {
+      if (x.t === 'h3') { n++; h += `<h3><span class="mm-num">${n}</span>${esc(x.x)}</h3>`; }
+      else if (x.t === 'h4') h += `<h4>${esc(x.x)}</h4>`;
+      else if (x.t === 'lb') h += `<p class="mm-label">${esc(x.x)}</p>`;
+      else if (x.t === 'p') h += `<p>${esc(x.x)}</p>`;
+      else if (x.t === 'note') h += `<div class="mm-note">${esc(x.x).replace(/^(Ingat, Bu!|Penting:|Catatan:|Pesan untuk Ibu:)/, '<strong>$1</strong>')}</div>`;
+      else if (x.t === 'ul' || x.t === 'ol') h += `<${x.t}>${x.i.map(i => `<li>${esc(i)}</li>`).join('')}</${x.t}>`;
+    });
+    return h;
+  }
+
+  function render(m) {
+    current = m;
+    panel.style.setProperty('--tone', m.ac); panel.style.setProperty('--tone-bg', m.bg);
+    q('.mm-ic').textContent = m.icon;
+    q('.mm-kicker').textContent = m.secName;
+    q('#mm-title').textContent = m.title;
+    q('.mm-sub').textContent = m.sub; q('.mm-sub').style.display = m.sub ? '' : 'none';
+    q('.mm-time').textContent = '± ' + m.min + ' menit baca';
+    q('.mm-body').innerHTML = body(m);
+    const i = MATERI.indexOf(m);
+    q('.mm-count').textContent = 'Materi ' + (i + 1) + ' dari ' + MATERI.length;
+    [[-1, 'Sebelumnya'], [1, 'Berikutnya']].forEach(([d, lab], k) => {
+      const t = MATERI[i + d], b = root.querySelectorAll('[data-nav]')[k];
+      b.disabled = !t; b.innerHTML = t ? `<small>${d < 0 ? '← ' : ''}${lab}${d > 0 ? ' →' : ''}</small>${esc(t.title)}` : '';
+    });
+    scroller.scrollTop = 0;
+  }
+
+  function show(m) {
+    if (root.hidden) { lastFocus = document.activeElement; root.hidden = false; document.documentElement.classList.add('mm-lock'); }
+    render(m); panel.focus({ preventScroll: true });
+  }
+  function hide() {
+    if (root.hidden) return;
+    root.hidden = true; current = null; document.documentElement.classList.remove('mm-lock');
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+
+  // buka lewat hash agar tombol Back peramban juga berfungsi
+  function open(id) { pushed = true; location.hash = 'materi-' + id; }
+  function close() {
+    if (root.hidden) return;
+    if (pushed) { pushed = false; history.back(); }
+    else { hide(); try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { location.hash = ''; } }
+  }
+  function sync() {
+    const m = /^#materi-(m\d+)$/.exec(location.hash);
+    if (m && byId[m[1]]) show(byId[m[1]]); else hide();
+  }
+  window.addEventListener('hashchange', sync);
+
+  document.addEventListener('click', e => {
+    const card = e.target.closest('.materi-card');
+    if (card) { open(card.dataset.id); return; }
+    if (e.target.closest('[data-close]')) { close(); return; }
+    const nav = e.target.closest('[data-nav]');
+    if (nav && current) { const t = MATERI[MATERI.indexOf(current) + Number(nav.dataset.nav)]; if (t) { pushed = true; location.hash = 'materi-' + t.id; } }
+  });
+  document.addEventListener('keydown', e => {
+    if (root.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {  // jaga fokus tetap di dalam popup
+      const f = [...root.querySelectorAll('button:not([disabled])')];
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  sync();   // jika halaman dibuka langsung dengan #materi-xx
+})();
+</script>
+<!-- END: Materi Script -->
+<!-- BEGIN: Animation Script -->
+<div id="scroll-progress"></div>
+<script data-purpose="animations">
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1. Hero: elemen muncul berurutan
+    document.querySelectorAll('#hero .grid > div:first-child > *').forEach((el, i) => {
+      el.classList.add('hero-in');
+      el.style.setProperty('--d', (0.1 + i * 0.12) + 's');
+    });
+
+    // 2. Section lain: muncul saat di-scroll
+    const targets = [];
+    const mark = (el, delay, type) => {
+      if (!el || el.classList.contains('hidden')) return;
+      if (/\babsolute\b|\bopacity-/.test(el.className)) return;   // abaikan doodle dekoratif
+      el.classList.add('reveal');
+      el.style.setProperty('--d', delay + 's');
+      if (type) el.setAttribute('data-reveal', type);
+      targets.push(el);
+    };
+    document.querySelectorAll('main > section:not(#hero)').forEach(sec => {
+      [...sec.children].forEach(child => {
+        const cls = child.className || '';
+        if (/\bgrid\b/.test(cls) || child.id === 'faq-accordion' || /space-y-/.test(cls)) {
+          [...child.children].forEach((c, i) => mark(c, Math.min(i, 8) * 0.09, i % 2 ? '' : 'zoom'));
+        } else {
+          mark(child, 0);
+        }
+      });
+    });
+
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      targets.forEach(t => io.observe(t));
+    } else {
+      targets.forEach(t => t.classList.add('in-view'));
+    }
+
+    // 3. Bar progres scroll + bayangan navbar
+    const bar = document.getElementById('scroll-progress');
+    const header = document.getElementById('site-header');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      if (header) header.classList.toggle('scrolled', h.scrollTop > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+<!-- END: Animation Script -->
+</body></html>
